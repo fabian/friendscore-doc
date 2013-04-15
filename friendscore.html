@@ -457,6 +457,116 @@ Fabian Vogler, <a href="mailto:fabian.vogler@gmail.com">fabian.vogler@gmail.com<
 <h3>Ausgangslage</h3>
 <p>
 </p>
+
+<h2>Analyse APIs</h2>
+
+<p>
+Gemäss Aufgabenstellung soll die Web-Applikation mit zwei APIs unterschiedlicher 
+sozialer Netwerke umgesetzt werden.
+Mit einer detailierten Analyse der APIs sollen diese auf derren Funktionsumfang 
+und Eignung für das Projekt geprüft werden.
+</p>
+
+<h3>Instagram</h3>
+<p>
+<a href="http://instagram.com/">Instagram</a> ist eine soziales Netzwerk zum 
+Teilen von Fotos. Die Fotos können über 
+die Android- oder iPhone-App von Instagram hochgeladen werden. Die App bietet 
+zudem die Möglichkeit, die Fotos mit vordefinierten Fotofiltern zu versehen und 
+dem Foto die GPS-Koordinaten zu hinterlegen. Innerhalb der App können dann auf 
+dem Profil eines Benutzers die Fotos auf einer Karte angezeigt werden.
+</p>
+<p>
+Die von Instagram zur Verfügung gestellte 
+<a href="http://instagram.com/developer/">API</a> ist nach einer Registrierung 
+frei nutzbar. Die Authentifizierung erfolgt über OAuth und die API selbst 
+funktioniert danach mit einfachen HTTP-Anfragen. Nach der Authentifizierung des 
+Benutzers bei Instagram erhält die Applikation einen benutzerspezifischen 
+Zugriffs-Token, welcher in der Datenbank gespeichert und für zukünftige Anfragen 
+verwendet werden kann.
+</p>
+<h4>Inhalte</h4>
+<p>
+Über die Ressource <code>/users/self/feed</code> können direkt sämtliche Fotos 
+von Freunden abgerufen werden. Die Antwort enthält maximal 30 Fotos, weitere 
+Fotos können aber über eine in der Antwort mitgelieferte URL abgerufen werden 
+(Feld <code>next_url</code>). Dieses Feld ist auch in Folgeantworten enthalten 
+und somit können mit wiederholten Abfragen sämtliche Fotos abgerufen werden, bis 
+das Feld <code>next_url</code> leer ist.
+</p>
+<p>
+Sofern verfügbar werden auch die Koordinaten, an welchen das Foto gemacht wurde, 
+in der Antwort zurück gegeben.
+</p>
+<p><code><pre>
+{
+   "pagination":{
+      "next_url":"https:\/\/api.instagram.com\/v1\/users\/self\/feed?access_token=[…]",
+      "next_max_id":"433900220479022850_229816896"
+   },
+   "meta":{
+      "code":200
+   },
+   "data":[
+      {
+         […]
+         "location":{
+            "latitude":47.368833333,
+            "longitude":8.5035
+         },
+         […]
+         "created_time":"1366013513",
+         "link":"http:\/\/instagram.com\/p\/YHkPwzyGlx\/",
+         […]
+      },
+      […]
+   ]
+}
+</pre></code></p>
+<p>
+Zusätzlich besteht die Möglichkeit, über die Ressource <code>/locations/search</code>
+und dem Parameter <code>foursquare_v2_id</code> einen bestimmten Ort anhand einer
+Foursquare ID zu suchen und Fotos von dort abzurufen. Dies ist in Kombination 
+mit der Foursquare-API interessant.
+</p>
+<h4>Zugriffsmethoden</h4>
+<p>
+Neben dem direkten Aufruf der API wurden auch die Libraries
+<a href="https://github.com/sesser/Instaphp">Instaphp</a> und 
+<a href="https://github.com/galen/PHP-Instagram-API">PHP-Instagram-API</a>
+evaluiert. Da aber beide nur eine weitere Abstraktionsschicht für die 
+HTTP-Aufrufe an die API darstellen, wurde entschieden, keine der beiden
+einzusetzen. Durch den direkten Aufruf der API wird zum einen das Testing 
+transparenter und das Verstäntnis in Bezug auf Besonderheiten der API wird 
+gefördert.
+</p>
+<h4>Nutzungsbedingungen</h4>
+<p>
+Die Nutzungsbedingungen der API weisen darauf hin, dass die Fotos dem 
+jeweiligen Urheber gehören und mit dem entsprechenden Hinweis versehen werden 
+müssen:
+</p>
+<blockquote>
+<p>
+Although the Instagram APIs can be used to provide you with access to Instagram 
+user photos, neither Instagram's provision of the Instagram APIs to you nor your 
+use of the Instagram APIs override the photo owners' requirements and 
+restrictions, which may include "all rights reserved" notices (attached to each 
+photo by default when uploaded to Instagram), Creative Commons licenses or other 
+terms and conditions that may be agreed upon between you and the owners.
+</p>
+<p>
+— <a href="http://instagram.com/about/legal/terms/api/">http://instagram.com/about/legal/terms/api/</a>, Aufruf am 15. April 2013
+</footer>
+</blockquote>
+<h4>Fazit</h4>
+<p>
+Die API ist einfach benutzbar und es traten keine technischen Probleme bei der
+Evaluation auf. Die Fotos lassen sich anhand der Koordinaten zu einer bestimmten 
+Ort zuordnen und können in der Applikation kontextbasiert angezeigt werden, um 
+die Beuurteilung des Orts dem Benutzer zu erleichtern.
+</p>
+
 </div>
 
 <div class="chapter">
