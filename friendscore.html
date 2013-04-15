@@ -575,6 +575,68 @@ Ort zuordnen und können in der Applikation kontextbasiert angezeigt werden, um
 die Beuurteilung des Orts dem Benutzer zu erleichtern.
 </p>
 
+<h3>Foursquare</h3>
+<p>
+<a href="https://foursquare.com/">Foursquare</a> ist ein soziales Netzwerk um 
+Besuche an realen Orten mit Freunden zu teilen und Tipps zu hinterlassen. Über 
+eine Android- und iOS-App kann sich der Benutzer anhand seiner aktuellen 
+Position an einem umliegenden Ort einchecken und sehen ob bereits Freunde 
+an diesem Ort waren. Mit der App kann sich der Benutzer auch Empfehlungen zu 
+umliegenden Orten anhand der Aktivitäten seiner Freunde geben lassen.
+</p>
+<h4>Inhalte</h4>
+<p>
+Über die Ressource <code>/checkins/recent</code> können zwar Besuche von 
+Freunden abgerufen werden, jedoch ist diese Abfrage auf 100 Resultat limitiert 
+- ältere Daten sind somit über diese Ressource nicht abrufbar. Leider gibt es 
+über die Foursquare API keine Möglichkeit, die vollständige Historie von 
+Besuchen von befreundeten Personen abzurufen.
+</p>
+<p>
+Bei Aufrufen von spezifischen Lokalitäten werden jedoch die bereits dort 
+gewesenen Freunde zurück geliefert. Zudem können über die Ressource 
+<code>/venues/explore</code> Lokalitäten, welche bereits von Freunden besucht 
+wurden, abgefragt werden. Dazu ist jedoch die Übergabe von Koordinaten nötig 
+und die Antwort beschränkt sich auf die nährere Umgebung.
+</p>
+<pre class="code"><code>{
+   […]
+   "response":{
+      "recent":[
+         {
+            "id":"516beed1e4b0f82ae40595ea",
+            "createdAt":1366027985,
+            "type":"checkin",
+            […]
+            "venue":{
+               "id":"4f633c94e4b0e30d1f727643",
+               "name":"Gare de Solliat-Golisse",
+               "contact":{
+                  "twitter":"railservice"
+               },
+               "location":{
+                  "lat":46.61450284366693,
+                  "lng":6.239033999185471,
+                  "country":"Switzerland",
+                  "cc":"CH"
+               },
+               […]
+            },
+            […]
+         },
+         […]
+      ]
+   }
+}
+</code></pre>
+<h4>Fazit</h4>
+<p>
+Foursquare verfügt über eine grosse Anzahl an Informationen über Lokalitäten, 
+welche wir über die API einfach abfragen können. Leider können die Aktivtäten 
+von Freunden nicht direkt abgefragt werden - durch die Suche anhand von 
+Koordinaten ist es jedoch möglich, die API zusammen mit den Koordinaten aus 
+einer anderen API zu benutzen.
+</p>
 </div>
 
 <div class="chapter">
