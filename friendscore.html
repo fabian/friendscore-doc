@@ -79,12 +79,14 @@ p {
     font-size: 1em;
 }
 
+pre.code,
 p.code {
     padding-left: 40px;
 }
 
+pre.code code,
 p.code code {
-    font-size: 0.8em;
+    font-size: 0.7em;
     display: block;
     border-left: 1px solid #126396;
     padding: 0.5em 0 0.5em 19px;
@@ -276,6 +278,11 @@ div.chapter {
     #second,
     div.chapter {
         border-top: 1px solid #ddd;
+    }
+
+    pre.code code,
+    p.code code {
+        font-size: 0.9em;
     }
 }
 
@@ -500,10 +507,9 @@ das Feld <code>next_url</code> leer ist.
 Sofern verfügbar werden auch die Koordinaten, an welchen das Foto gemacht wurde, 
 in der Antwort zurück gegeben.
 </p>
-<p><code><pre>
-{
+<pre class="code"><code>{
    "pagination":{
-      "next_url":"https:\/\/api.instagram.com\/v1\/users\/self\/feed?access_token=[…]",
+      "next_url":"https:\/\/api.instagram.com\/v1\/users\/self\/feed[…]",
       "next_max_id":"433900220479022850_229816896"
    },
    "meta":{
@@ -524,7 +530,7 @@ in der Antwort zurück gegeben.
       […]
    ]
 }
-</pre></code></p>
+</code></pre>
 <p>
 Zusätzlich besteht die Möglichkeit, über die Ressource <code>/locations/search</code>
 und dem Parameter <code>foursquare_v2_id</code> einen bestimmten Ort anhand einer
