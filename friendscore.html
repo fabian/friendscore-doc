@@ -476,6 +476,89 @@ Mit einer detailierten Analyse der APIs sollen diese auf derren Funktionsumfang
 und Eignung für das Projekt geprüft werden.
 </p>
 
+<h3>Facebook</h3>
+<p>
+<a href="https://facebook.com/">Facebook</a> ist ein soziales Netzwerk um mit
+Freunden und Bekannten in Kontakt zu treten. Facebook ist das Grösste soziale
+Netzwerk der Gegenwart mit mehr als einer Milliarde Mitgliedern. Über Apps auf 
+diversen Plattformen können Benutzer  Statusupdates erfassen, sich an einem
+Ort einchecken, Fotos der letzten Ferien veröffentlichen oder mit anderen
+Benutzern chatten. Zentral ist der Newsfeed, in welchem alle Informationen der
+Freunde bereitgestellt werden. Dies erlaubt es dem Benutzer einfach Stories zu
+"liken" oder einen Kommentar zu hinterlassen.
+</p>
+<h4>Inhalte</h4>
+<p>
+Facebook stellt eine umfassende <a href="https://developer.facebook.com">API</a>
+zur Verfügung. Der Entwickler muss sich bei Facebook registrieren und bestimmen
+auf welche Daten eines Benutzers er zugreifen möchte. Dies kann von der Emailadresse
+bis zu den religiösen Ansichten der Freunde des Benutzers gehen.<br />
+Nach der Registrierung kann via dem OAuth Verfahren eine spezielles Token beantragt
+werden. Dieses Token wird für die weitere Verwendung in die Datenbank gespeichert.
+Via einfacher HTTP Requests ist dann der Zugriff auf die API gestattet.
+</p>
+<p>
+Über die Ressource <code>/me</code> können diverse Felder des Benutzer abgefragt werden.
+Dieser Aufruf ist wichtig um die eindeutige <code>id</code> eines Benutzers zu erhalten.
+Mit der <code>id</code> werden alle weiteren Aufrufe gegen die API gestartet.
+</p>
+<p>
+Um an Informationen der Freunde eines Benutzer zu gelangen muss folgende Ressource
+aufgerufen werden: <code>/{id}?id,name,(first_name,last_name,checkins.fields(coordinates,place))</code>
+<br />Mit dem <code>fields</code> Feld lassen sich spezifische Informationen definieren.
+</p>
+<pre class="code"><code>[…]
+    "friends": {
+        "data": [
+        […]
+        {
+        "first_name": "Fabian", 
+        "last_name": "Vogler", 
+        "id": "1522910717", 
+        "checkins": {
+            "data": [
+                […]
+                {
+                    "coordinates": {
+                        "latitude": 47.47596578, 
+                        "longitude": 8.30927844
+                    }, 
+                    "place": {
+                        "id": "230319580424265", 
+                        "name": "Baden Stadtfest 2012", 
+                        "location": {
+                            "street": "", 
+                            "city": "Baden", 
+                            "state": "", 
+                            "country": "Switzerland", 
+                            "zip": "", 
+                            "latitude": 47.47596578, 
+                            "longitude": 8.30927844
+                    }
+                }, 
+                    "id": "10151060709378791", 
+                    "created_time": "2012-08-24T23:53:13+0000"
+                },
+                […]
+</code>
+</pre>
+
+<h4>Fazit</h4>
+<p>
+Facebook bietet über ihre API ein enormes Potenzial, weil auf so gut wie alle Daten
+eines Benutzer zugegriffen werden kann. Natürlich unter der Voraussetzung, dass der
+Benutzer den entsprechenden Zugriff erlaubt hat.
+</p>
+<p>Die API bietet einen sehr tiefen Einblick in den sozialen Graphen eines Benutzers
+und dessen Freunde. Daher ist es entsprechenden einfach die von uns gewünschten
+Daten zu aggregieren.
+</p>
+<p>Ein weiteres sehr spannendes Thema ist die
+<a href="https://developers.facebook.com/docs/reference/api/realtime">RealTime API</a>.
+Diese erlaubt es dem Entwickler Interesse für gewisse Felder zu bekunden. Bei einem 
+Update dieser Felder wird er automatisch von Facebook benachrichtigt.
+</p>
+
 <h3>Instagram</h3>
 <p>
 <a href="http://instagram.com/">Instagram</a> ist eine soziales Netzwerk zum 
