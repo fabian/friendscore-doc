@@ -690,8 +690,83 @@ von Freunden nicht direkt abgefragt werden - durch die Suche anhand von
 Koordinaten ist es jedoch möglich, die API zusammen mit den Koordinaten aus 
 einer anderen API zu benutzen.
 </p>
-</div>
 
+<h3>Twitter</h3>
+<p>
+<a href="https://twitter.com">Twitter</a> ist ein Dienst, welcher den Usern
+ermöglicht so genannte Tweets zu erfassen. Diese Tweets müssen sich jedoch auf
+140 Zeichen beschränken. Jeder User kann anderen Usern followen bzw. er selber
+besitzt Follower. So lassen sich Tweets mit einem @ Zeichen an bestimmte Personen
+widmen. Viele Benutzer verwenden einen Hashtag um einen Tweet mit Metadaten zu
+versehen.
+</p>
+<p>
+Twitter hat für jede Plattform eigene Apps bzw. eine grosse Anzahl von Drittanbietern,
+welche Apps bereitstellen.
+</p>
+<h4>Inhalte</h4>
+<p>
+Twitter stellt sehr viele <a href="https://developer.twitter.com">Developer Ressourcen</a>
+bereit. Diese reichen von einfachen Beschreibungen der API's über den Ablauf einer
+OAuth Authentifizierung. Speziell zu erwähnen ist, dass Twitter sich bisher noch
+nicht für OAuth2 entscheiden konnte. Erst sehr wenige API's von Twitter unterstützen
+den neuen Standart. Die Authentifizierung gegenüber OAuth1 ist komplex und verwendet
+spezielle HTTP-Header Atrribute. Für Twitter sei der OAuth2 Standart noch zu wenig
+ausgreift und warten ab bis eine endgültige Spezifikation des Standarts herausgegeben wird.
+</p>
+<p>
+Interessant für das Projekt Friendscore sind die Daten der Follower eines Users. Über die Ressource <code>/1.1/friends/ids.json</code> erhält man die eindeutigen Id's der Follower des Benutzers. Anhand dieser Id ist es dann möglich auf die Timeline eines Users zuzugreifen. Die Timline des Users enthält alle seine Tweets und den dazugehörenden Metadaten wie z.B. die Geolocation des Tweets. Die Timeline Ressource ist unter <code>/1.1/statuses/user_timeline.json</code> zu finden.
+</p>
+<pre class="code"><code>[…]
+    'place': {
+        'id': '6197893ccb5e11d0',
+        'url': string 'https://api.twitter.com/1.1/geo/id/6197893ccb5e11d0.json',
+        'place_type': 'city',
+        'name': 'Viterbo',
+        'full_name': 'Viterbo, Viterbo',
+        'country_code': 'IT',
+        'country': 'Italy',
+        'bounding_box': {
+            'type': 'Polygon',
+            'coordinates': [
+                {
+                    [
+                        {
+                            [
+                                {
+                                    11.9036425, 
+                                    42.2968828
+                                },
+                                {
+                                    12.2267545,
+                                    42.2968828
+                                },
+                                {
+                                    12.2267545,
+                                    42.5874835
+                                },
+                                {
+                                    11.9036425,
+                                    42.5874835
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+[…]
+</code>
+</pre>
+
+<h4>Fazit</h4>
+<p>
+Die Twitter API bietet enorm viele Daten, was die API schwer verständlich macht. Die Authentifizierung steckt immer noch bei OAuth1 was zusätzlichen Aufwand bedeutet. Twitter hat spezielle Richtlinien erstellt wie z.B. ein Tweet bei einem externen Service dargestellt werden muss. Weiter hat Twitter eine relativ tiefe Grenze an maximal Anzahl User für eine App eingeführt.
+</p>
+<p>EInsgesamt ist zu sagen, man kommt an die Daten welche man braucht aber es geht nicht ohne einen Zusatzaufwand. Wie auch Facebook bietet eine eine <a href="https://dev.twitter.com/docs/streaming-apis">Streaming API</a> an um Daten in Realtime zu erhalten.
+</p>
+</div>
 <div class="chapter">
 <h2>Anhang</h2>
 
