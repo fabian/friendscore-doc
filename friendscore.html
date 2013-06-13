@@ -53,7 +53,8 @@ h4,
 p,
 figure figcaption,
 figure.inline,
-ul li {
+ul li,
+ol li {
     clear: both;
     font-weight: normal;
     padding-left: 60px;
@@ -93,7 +94,8 @@ p.code code {
     background-color: #f6f6f6;
 }
 
-ul li {
+ul li,
+ol li {
     padding-bottom: 1em;
 }
 
@@ -203,10 +205,20 @@ div.chapter {
 
 #toc,
 #toc ol,
-#figures {
+#figures,
+#sources {
     list-style-type: none;
     padding: 0;
     margin: 0;
+}
+
+#sources {
+    counter-reset: sources;
+}
+
+#sources li:before {
+	content: "[" counter(sources) "] ";
+	counter-increment: sources;
 }
 
 #toc > li {
@@ -378,6 +390,32 @@ function toc() {
     }
 }
 
+function sources() {
+
+    var sources = document.getElementsByTagName('a'),
+        index = document.getElementById('sources'),
+        i, source, li, href, text;
+
+    for (i = 0; i < sources.length; i++) {
+
+        source = sources[i];
+        href = source.getAttribute('href');
+        text = source.getAttribute('title');
+
+        if (href.indexOf('http') != 0) {
+            continue;
+        }
+
+        if (!text) {
+            text = source.innerHTML;
+        }
+
+        li = document.createElement('li');
+        li.appendChild(document.createTextNode(text + ': ' + href));
+        index.appendChild(li); 
+    }
+}
+
 function figures() {
 
     var captions = document.getElementsByTagName('figcaption'),
@@ -405,6 +443,7 @@ function figures() {
 
 function init() {
 
+    sources();
     figures();
     toc();
 }
@@ -468,7 +507,7 @@ Freunde bereitgestellt werden. Dies erlaubt es dem Benutzer einfach Stories zu
 </p>
 <h4>Inhalte</h4>
 <p>
-Facebook stellt eine umfassende <a href="https://developer.facebook.com">API</a>
+Facebook stellt eine umfassende <a href="https://developer.facebook.com" title="Facebook API">API</a>
 zur Verfügung. Der Entwickler muss sich bei Facebook registrieren und bestimmen
 auf welche Daten eines Benutzers er zugreifen möchte. Dies kann von der Emailadresse
 bis zu den religiösen Ansichten der Freunde des Benutzers gehen.<br />
@@ -533,7 +572,7 @@ und dessen Freunde. Daher ist es entsprechenden einfach die von uns gewünschten
 Daten zu aggregieren.
 </p>
 <p>Ein weiteres sehr spannendes Thema ist die
-<a href="https://developers.facebook.com/docs/reference/api/realtime">RealTime API</a>.
+<a href="https://developers.facebook.com/docs/reference/api/realtime" title="Facebook RealTime API">RealTime API</a>.
 Diese erlaubt es dem Entwickler Interesse für gewisse Felder zu bekunden. Bei einem 
 Update dieser Felder wird er automatisch von Facebook benachrichtigt.
 </p>
@@ -549,7 +588,7 @@ dem Profil eines Benutzers die Fotos auf einer Karte angezeigt werden.
 </p>
 <p>
 Die von Instagram zur Verfügung gestellte 
-<a href="http://instagram.com/developer/">API</a> ist nach einer Registrierung 
+<a href="http://instagram.com/developer/" title="Instagram API">API</a> ist nach einer Registrierung 
 frei nutzbar. Die Authentifizierung erfolgt über OAuth und die API selbst 
 funktioniert danach mit einfachen HTTP-Anfragen. Nach der Authentifizierung des 
 Benutzers bei Instagram erhält die Applikation einen benutzerspezifischen 
@@ -778,6 +817,10 @@ Die Twitter API bietet enorm viele Daten, was die API schwer verständlich macht
 </div>
 <div class="chapter">
 <h2>Anhang</h2>
+
+<h3>Quellenverzeichnis</h3>
+
+<ol id="sources"></ol>
 
 <h3 class="break">Abbildungsverzeichnis</h3>
 
