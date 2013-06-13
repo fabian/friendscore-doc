@@ -818,6 +818,82 @@ Die Twitter API bietet enorm viele Daten, was die API schwer verständlich macht
 <p>Insgesamt ist zu sagen, man kommt an die Daten welche man braucht aber es geht nicht ohne einen Zusatzaufwand. Wie auch Facebook bietet eine eine <a href="https://dev.twitter.com/docs/streaming-apis" title="Twitter Streaming API">Streaming API</a> an um Daten in Realtime zu erhalten.
 </p>
 </div>
+
+<div class="chapter">
+<h2>Architektur</h2>
+
+<h3>Übersicht</h3>
+
+<figure id="figure-system-uebersicht" class="inline">
+    <img src="images/system-uebersicht.png"/>
+    <figcaption>Übersicht System</figcaption>
+</figure>
+
+<p>
+Die Web-Applikation FriendScore wurde mit PHP geschrieben und läuft auf einem 
+zentralen Server. Bei der Registrierung werden die Benutzerdaten in einer 
+MySQL-Datenbank gespeichert. Über einen Cron-Job werden die Check-In-Daten 
+des Benutzers regelmässig über APIs von Foursquare und Facebook gelesen und 
+in ElasticSearch gespeichert.
+</p>
+
+<h3>Applikation</h3>
+
+<p>
+Die Klassen der PHP-Applikation wurden auf verschiedene Pakete (Bundles)
+aufgeteilt, um die Funktionalität logisch zu trennen. Das 
+<code>UserBundle</code> stellt die Funktionalität für einen einfachen Benutzer
+zur Verfügung, welche von den einzelnen Schnittstellen um Attribute wie z.B. ein 
+Token erweitert werden kann.
+</p>
+
+<p>
+Pro Schnittstelle existiert ebenfalls ein Paket, welche die Anbindung der API
+verwaltet. Das <code>WebBundle</code> nutzt diese, um die unterschiedlichen 
+Informationen daraus darzustellen.
+</p>
+
+<figure id="figure-paketdiagramm-friendscore" class="inline">
+    <img src="images/paketdiagramm-friendscore.png"/>
+    <figcaption>Paketdiagramm FriendScore</figcaption>
+</figure>
+
+<p>
+Für die Web-Applikation kommt eine an das Web angepasster Form der 
+Model–View–Controller-Architektur zur Anwendung, welche mithilfe des 
+PHP-Frameworks <a href="http://symfony.com/">Symfony</a> in der Version 2.2 
+umgesetzt wurde.
+</p>
+
+<figure id="figure-klassendiagramm-foursquare" class="inline">
+    <img src="images/klassendiagramm-foursquare.png"/>
+    <figcaption>Klassendiagramm Bundle Foursquare</figcaption>
+</figure>
+
+<p>
+Das Model setzt sich aus den gespeicherten Daten und der Business-Logik 
+zusammen. Exemplarisch wird hier das <code>FoursquareBundle</code> beschrieben, 
+wobei die Klassen <code>Foursquare</code>, <code>FoursquareAuth</code> und 
+<code>FoursquareStorage</code> das Model bilden. Die View ist für die 
+Darstellung der Daten zuständig. Diese Funktion wird im Fall von Symfony durch 
+die Template-Engine <a href="http://twig.sensiolabs.org/">Twig</a> übernommen. 
+Der Controller nimmt Benutzeranfragen entgegen und ruft die nötigen Befehle aus 
+dem Model auf. Er gibt dann die Daten aus dem Model an die View weiter, damit 
+diese die Daten darstellen kann.
+</p>
+
+<h3>Indexierung</h3>
+
+<p>Parent/Child</p>
+<p>Kein Join</p>
+
+<p>Nested</p>
+<p>Schlechte Performance da immer ganzes Doc indexiert wird</p>
+
+<p>http://euphonious-intuition.com/2013/02/managing-relations-in-elasticsearch/</p>
+
+</div>
+
 <div class="chapter">
 <h2>Anhang</h2>
 
