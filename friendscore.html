@@ -107,6 +107,7 @@ table th {
     border: 1px solid #ddd;
     font-size: 0.75em;
     text-align: left;
+    vertical-align: top;
 }
 
 figure {
@@ -522,16 +523,20 @@ für die Benutzer zu vereinfachen. Fazit erstellen inkl Review und Ausblick.
 <h3>Übersicht</h3>
 
 <p>
-
+Es soll eine Web-Applikation umgesetzt werden, um die Check-Ins von Freunden in 
+unterschiedlichen Sozialen Netzwerken anzuzeigen. Der Benutzer soll sich in der 
+Web-Applikation registrieren und dann einloggen können. Hat er sein Konto mit 
+mindestens einem Sozialen Netzwerk verbunden, werden jeweils um 07:00 Uhr die 
+Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt.
 </p>
-
-<h3>Anwendungsfälle</h3>
 
 <figure id="figure-anwendungsfalldiagramm-friendscore" class="inline">
     <img src="images/anwendungsfalldiagramm-friendscore.png"/>
     <figcaption>Anwendungsfalldiagramm FriendScore</figcaption>
 </figure>
 
+
+<h3>Anwendungsfälle</h3>
 
 <figure class="inline">
 <table width="100%">
@@ -555,6 +560,77 @@ für die Benutzer zu vereinfachen. Fazit erstellen inkl Review und Ausblick.
                 hierarchischer Reihenfolge sehen können. Es werden nur die 
                 letzten 5 Check-Ins angezeigt, ältere Check-Ins können nicht
                 angezeigt werden.
+            </th>
+        </tr>
+        <tr>
+            <th>Vorbedingungen</th>
+            <td>
+                Der Benutzer muss sich registiert und eingeloggt haben. Er muss 
+                zudem sein Konto mit mindestens einem Sozialen Netzwerk 
+                verbunden haben.
+            </th>
+        </tr>
+    </tbody>
+</table>
+</figure>
+
+<figure class="inline">
+<table width="100%">
+    <colgroup>
+        <col width="30%" />
+        <col width="70%" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th>Name</th>
+            <td>Lokalität ansehen</th>
+        </tr>
+        <tr>
+            <th>Priorität</th>
+            <td>tief</th>
+        </tr>
+        <tr>
+            <th>Beschreibung</th>
+            <td>
+                Eine Detailansicht soll dem Benutzer den Namen und die 
+                Position einer Lokalität anzeigen. Die Position soll auf einer 
+                Karte dargestellt werden. Zudem sollen die Namen von Freunden 
+                aufgelistet werden, welche in der Lokalität eingecheckt haben.
+            </th>
+        </tr>
+        <tr>
+            <th>Vorbedingungen</th>
+            <td>
+                Der Benutzer gelangt entweder über den Check-Ins eines Freundes
+                auf eine Lokalität oder hat diese über die Suche gefunden.
+            </th>
+        </tr>
+    </tbody>
+</table>
+</figure>
+
+<figure class="inline">
+<table width="100%">
+    <colgroup>
+        <col width="30%" />
+        <col width="70%" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th>Name</th>
+            <td>Lokalitäten suchen</th>
+        </tr>
+        <tr>
+            <th>Priorität</th>
+            <td>tief</th>
+        </tr>
+        <tr>
+            <th>Beschreibung</th>
+            <td>
+                Der Benutzer soll mit einem Textfeld nach beliebigen Lokalitäten 
+                suchen können. Es soll eine Volltextsuch im Namen aller 
+                Lokalitäten durchgeführt werden. In einer Liste sowie auf einer 
+                Karte sollen maximal 5 Resultate angezeigt werden.
             </th>
         </tr>
         <tr>
