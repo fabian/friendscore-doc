@@ -645,6 +645,41 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
 </table>
 </figure>
 
+<figure class="inline">
+<table width="100%">
+    <colgroup>
+        <col width="30%" />
+        <col width="70%" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th>Name</th>
+            <td>Friendscore anzeigen</th>
+        </tr>
+        <tr>
+            <th>Priorität</th>
+            <td>hoch</th>
+        </tr>
+        <tr>
+            <th>Beschreibung</th>
+            <td>
+                Der Benutzer soll anhand der Checkins seiner Freunde einen Score angezeigt bekommen, welcher basierend auf der Häufigkeit der Checkins der Freunde berechnet wird. Dieser Score, gennant Friendscore, befindet sich zwischen 0 und 100%.
+            </td>
+        </tr>
+        <tr>
+            <th>Vorbedingungen</th>
+            <td>
+                Der Benutzer muss sich registiert und eingeloggt haben. Er muss 
+                zudem sein Konto mit mindestens einem Sozialen Netzwerk 
+                verbunden haben.
+                Ein Freund muss mindestens an einer Lokalität eingecheckt haben.
+            </th>
+        </tr>
+    </tbody>
+</table>
+</figure>
+
+
 </div>
 
 <div class="chapter">
@@ -1051,6 +1086,113 @@ diese die Daten darstellen kann.
 <p>Schlechte Performance da immer ganzes Doc indexiert wird</p>
 
 <p>http://euphonious-intuition.com/2013/02/managing-relations-in-elasticsearch/</p>
+
+</div>
+
+<div class="chapter">
+<h2>Friend Score</h2>
+
+<h3>Idee</h3>
+<p>
+    Die Idee hinter dem Friend Score ist der Vorschlag von Lokailtäten basierend auf den Checkins der Freunde des Users. Je mehr die Freunde mit einer Lokalität inteagiert haben desto höher steigt die Prozentzahl für den Friend Score.
+</p>
+<p>
+    Ein User erhält dadurch einen Einblick über Lokalitäten mit welchen Freunde von ihm stark inteagieren. Darauf basierend lassen sich Vorschläge über Lokalitäten anzeigen. Es ist davon auszugehen, dass Lokalitäten mit einem hohen Friend Score den Geschmack des Users gut treffen. Dies weil die Geschmäcker innerhalb eines Freundenkreises meistens relativ ähnlich sind.
+</p>
+
+<h3>Berechnung</h3>
+<p>
+    Basierend auf den Checkins von Freunden werde Punkte verteilt. Nach dem alle Checkins der Freunde für eine Lokalität analysiert worden sind werden die einzelnen Punkte aufsummiert. Die daraus resultierende Summe wird als Friend Score bezeichnet.
+</p>
+<p>
+    Die Berechnung des Basispunkts für einen Checkin basiert auf folgender Formel:
+</p>
+
+<pre class="code"><code>
+    Basispunkt = 1 / ((3 notwendige Checkins) * 2) / (x Anzahl der verfügbaren Netzwerke)
+</code>
+</pre>
+
+<p>
+    Für den Moment werden zwei, Facebook und Foursquare, soziale Netzwerke unterstützt. Es werden mindestens 3 Checkins pro Lokalität benötigt um die maximale Anzahl Punkte zu erhalten. Daraus folgt folgender Wert für den Basispunkt:
+</p>
+
+<pre class="code"><code>
+    1 / (3 * 2) / 2 = 0.08333...
+</code>
+</pre>
+
+<p>
+    Wie zu erkennen ist werden die Checkins doppelt bewertet. Der Grund dafür ist, dass davon ausgegangen wird das der mehrfache Besuch einer Lokalität des gleichen Freundes eine höheren Stellenwert hat als nur einen Besuch. Eine Gewichtig der sozialen Netzwerke wird momentan nicht vorgenommen. Dies ist könnte aber in Zukunft in die Formel noch einfliessen.
+</p>
+
+<p>
+    Pro Checkin wird nun der Basispunkt verteilt. Sollte ein Freund mehr als einmal eingecheckt habe werden seine Punkte doppelt gezählt. Die maximale Punktzahl kann nur erreicht werden wenn ein Freund drei mal am gleichen Ort eingecheckt hat. Die maximale Punktzahl pro sozialen Netzwerk beschränkt auf folgende Formel, da die Punkte linear über die Netzwerke verteilt werden.
+</p>
+
+<pre class="code"><code>
+    Maximum pro Netzwerk = 1 / (x Anzahl der verfügbaren Netzwerke)
+</code>
+</pre>
+
+<p>
+    In unserem Fall also:
+</p>
+
+<pre class="code"><code>
+    1 / (x Anzahl der verfügbaren Netzwerke) = 0.5
+</code>
+</pre>
+
+<h3>Beispiel</h3>
+
+<p>
+    Als Beispiel wird das Restaurant Sonne verwendet. Es stehen Checkins von Hans und Susanne zur Verfügung.
+</p>
+
+<p>
+    Hans hat die Sonne insgesamt drei mal besucht. Zwei mal davon hat er sich via Facebook eingecheckt. Das dritte mal verwendete Hans Foursquare.
+</p>
+
+<p>
+    Susanne hat die Sonne vier mal besucht. Sie checkte sich jedes mal mit Foursquare ein.
+</p>
+
+<p>
+    Daraus resultieren folgende Punkte für Facebook:
+</p>
+
+<pre class="code"><code>
+    Hans: 2 * 2 * Basispunkt = 0.333...<br />
+    Susanne: 0<br />
+    <strong>Total: 0.333...</strong><br />
+</code>
+</pre>
+
+<p>
+    Die Punkte für Hans werden doppelt gezählt, weil er mehr als einmal in der Sonne war.
+    Für Foursquare werden folgende Punkte berechnet:
+</p>
+
+<pre class="code"><code>
+    Hans: 1 * Basispunkt = 0.08333...<br />
+    Susanne: 3 * 2 * Basispunkt = 0.5<br />
+    <strong>Total: 0.5</strong><br />
+</code>
+</pre>
+
+<p>
+    Es wird maximal mit 3 Checkins gerecht. Ebenfalls werden diese doppelt genommen. Die Punkte von Hans fliessen nicht mehr in die Berechnung ein, da die maximale Punktzahl bereits erreicht worden ist.
+</p>
+
+<p>Daraus resultiert folgender Friend Score</p>
+
+<pre class="code"><code>
+    Facebook: 0.333...<br />
+    Foursquare: 0.5<br />
+    <strong>Friend Score: 83%5</strong><br />
+</code>
+</pre>
 
 </div>
 
