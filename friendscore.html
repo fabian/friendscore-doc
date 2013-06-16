@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Friend Score</title>
+<title>FriendScore</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <style>
 @page {
@@ -10,7 +10,7 @@
     margin: 30mm 20mm 40mm 25mm;
 
     @bottom-left {
-        content: "Friend Score";
+        content: "FriendScore";
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         font-size: 1em;
         color: #aaa;
@@ -464,7 +464,7 @@ Seminararbeit Webprojekt mit PHP/MySQL<br/>
 Dozent: Matthias Bachmann<br/>
 Frühlingssemester 2013
 </p>
-<h1>Friend Score</h1>
+<h1>FriendScore</h1>
 <p class="logo">
 <img src="images/Map@2x.png" width="50" height="50" />
 </p>
@@ -490,7 +490,7 @@ unterschiedlichen Lokalitäten. Es ist gibt jedoch keine Plattform, welche
 einen Überblick über Daten aus mehreren Netzwerken und bezogen auf den 
 Freundeskreis gibt. Es soll deshalb eine Web-Applikation entwickelt werden, 
 welche dem Benutzer anhand der Informationen aus den sozialen Netzwerken 
-Empfehlungen (Friend Score genannt) zu Lokalitäten abgeben kann. 
+Empfehlungen (FriendScore genannt) zu Lokalitäten abgeben kann. 
 Weiter sollen die Interaktion der Freunden mit diesen Lokalitäten 
 dargestellt werden.
 </p>
@@ -503,7 +503,7 @@ Anwendung von Suchindexen und der Umgang mit APIs von sozialen Netzwerken
 gesammelt werden. Dem Benutzer soll die Möglichkeit geboten werden nach einer 
 Lokalität seiner Wahl zu suchen. Die Applikation untersucht darauf hin wie 
 seine Freunde, Follower etc. mit der gewünschten Lokalität interagiert haben. 
-Daraus wird ein sogenannter Friend Score berechnet. Speziell an diesem Ansatz 
+Daraus wird ein sogenannter FriendScore berechnet. Speziell an diesem Ansatz 
 ist, dass die Applikation keine eigene Datensätze über eine Lokalität anlegen 
 und pflegen muss, sondern diese anhand der Freunde aggregiert werden.
 </p>
@@ -654,7 +654,7 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
     <tbody>
         <tr>
             <th>Name</th>
-            <td>Friend Score anzeigen</th>
+            <td>FriendScore anzeigen</th>
         </tr>
         <tr>
             <th>Priorität</th>
@@ -663,7 +663,7 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
         <tr>
             <th>Beschreibung</th>
             <td>
-                Der Benutzer soll anhand der Checkins seiner Freunde einen Score angezeigt bekommen, welcher basierend auf der Häufigkeit der Checkins der Freunde berechnet wird. Dieser Score, gennant Friend Score, befindet sich zwischen 0 und 100%.
+                Der Benutzer soll anhand der Checkins seiner Freunde einen Score angezeigt bekommen, welcher basierend auf der Häufigkeit der Checkins der Freunde berechnet wird. Dieser Score, gennant FriendScore, befindet sich zwischen 0 und 100%.
             </td>
         </tr>
         <tr>
@@ -980,7 +980,7 @@ Services, wie die Anbindung der sozialen Netzwerke über ihre Webschnittstellen.
                 <td>9h</td>
             </tr>
             <tr>
-                <td>Berechnung Friend Score</td>
+                <td>Berechnung FriendScore</td>
                 <td>8h</td>
                 <td>9h</td>
             </tr>
@@ -1296,7 +1296,7 @@ spezielle HTTP-Header Atrribute. Für Twitter sei der OAuth2 Standart noch zu we
 ausgreift und warten ab bis eine endgültige Spezifikation des Standarts herausgegeben wird.
 </p>
 <p>
-Interessant für das Projekt Friend Score sind die Daten der Follower eines Users. Über die Ressource <code>/1.1/friends/ids.json</code> erhält man die eindeutigen Id's der Follower des Benutzers. Anhand dieser Id ist es dann möglich auf die Timeline eines Users zuzugreifen. Die Timline des Users enthält alle seine Tweets und den dazugehörenden Metadaten wie z.B. die Geolocation des Tweets. Die Timeline Ressource ist unter <code>/1.1/statuses/user_timeline.json</code> zu finden.
+Interessant für das Projekt FriendScore sind die Daten der Follower eines Users. Über die Ressource <code>/1.1/friends/ids.json</code> erhält man die eindeutigen Id's der Follower des Benutzers. Anhand dieser Id ist es dann möglich auf die Timeline eines Users zuzugreifen. Die Timline des Users enthält alle seine Tweets und den dazugehörenden Metadaten wie z.B. die Geolocation des Tweets. Die Timeline Ressource ist unter <code>/1.1/statuses/user_timeline.json</code> zu finden.
 </p>
 <pre class="code"><code>[…]
     'place': {
@@ -1457,19 +1457,19 @@ OK (5 tests, 18 assertions)
 </div>
 
 <div class="chapter">
-<h2>Friend Score</h2>
+<h2>FriendScore</h2>
 
 <h3>Idee</h3>
 <p>
-    Die Idee hinter dem Friend Score ist der Vorschlag von Lokalitäten basierend auf den Checkins der Freunde des Users. Je intensiver Freunde mit einer Lokalität inteagiert haben, desto höher steigt die Wert für den Friend Score.
+    Die Idee hinter dem FriendScore ist der Vorschlag von Lokalitäten basierend auf den Checkins der Freunde des Users. Je intensiver Freunde mit einer Lokalität inteagiert haben, desto höher steigt die Wert für den FriendScore.
 </p>
 <p>
-    Ein User erhält einen Einblick über Lokalitäten mit welchen seine Freunde intensiv inteagiert haben. Darauf basierend lassen sich Vorschläge über Lokalitäten anzeigen. Es ist davon auszugehen, dass Lokalitäten mit einem hohen Friend Score den Geschmack des Users gut treffen. Dies basierend auf der Annahme, dass die Geschmäcker innerhalb eines Freundenkreises meistens relativ ähnlich sind.
+    Ein User erhält einen Einblick über Lokalitäten mit welchen seine Freunde intensiv inteagiert haben. Darauf basierend lassen sich Vorschläge über Lokalitäten anzeigen. Es ist davon auszugehen, dass Lokalitäten mit einem hohen FriendScore den Geschmack des Users gut treffen. Dies basierend auf der Annahme, dass die Geschmäcker innerhalb eines Freundenkreises meistens relativ ähnlich sind.
 </p>
 
 <h3>Berechnung</h3>
 <p>
-    Basierend auf den Checkins von Freunden werde Punkte verteilt. Nach dem alle Checkins der Freunde für eine Lokalität analysiert worden sind werden die einzelnen Punkte aufsummiert. Die daraus resultierende Summe wird als Friend Score bezeichnet.
+    Basierend auf den Checkins von Freunden werde Punkte verteilt. Nach dem alle Checkins der Freunde für eine Lokalität analysiert worden sind werden die einzelnen Punkte aufsummiert. Die daraus resultierende Summe wird als FriendScore bezeichnet.
 </p>
 <p>
     Die Berechnung des Basispunkts für einen Checkin basiert auf folgender Formel:
@@ -1552,17 +1552,17 @@ OK (5 tests, 18 assertions)
     Es wird maximal mit 3 Checkins gerechnet. Ebenfalls werden diese doppelt genommen, da Susanne mehr als einmal in der Sonne war. Die Punkte von Hans fliessen nicht mehr in die Berechnung ein, da die maximale Punktzahl für ein einzelens Netzwerk bereits erreicht worden ist.
 </p>
 
-<p>Daraus resultiert folgender Friend Score</p>
+<p>Daraus resultiert folgender FriendScore</p>
 
 <pre class="code"><code>
     Facebook: 0.333...<br />
     Foursquare: 0.5<br />
-    <strong>Friend Score: 83%</strong><br />
+    <strong>FriendScore: 83%</strong><br />
 </code>
 </pre>
 
 <p>
-    Wie zu erkennen ist, ist die Berechnung des Friend Score schon bei einem einfachen Beispiel relativ komplex. Es wurde versucht von Anfang die variablen Bedingungen der Berechnung tief zu halten. Natürlich wird sich der Algorithmus in Zukunft weiterentwickeln und noch genauer werden.
+    Wie zu erkennen ist, ist die Berechnung des FriendScore schon bei einem einfachen Beispiel relativ komplex. Es wurde versucht von Anfang die variablen Bedingungen der Berechnung tief zu halten. Natürlich wird sich der Algorithmus in Zukunft weiterentwickeln und noch genauer werden.
 </p>
 
 </div>
@@ -1572,7 +1572,7 @@ OK (5 tests, 18 assertions)
 
 <h3>Ausgangslage</h3>
 <p>
-    Heutzutage brauchen viele Menschen soziale Netzwerke wie Facebook und Twitter. Es werden immens viele Daten in diesen Netzwerken gelagert. Wir wollten eine "Vorschlage" - Service basierend auf den Daten seiner Freunde erstellen. Unser Service Friend Score analysiert die Checkins seiner Freunde und berechnet daraus einen sogennanten Friend Score. Dieser Score sagt aus, wie intensiv die Freunde mit einer Lokalität interagieren.
+    Heutzutage brauchen viele Menschen soziale Netzwerke wie Facebook und Twitter. Es werden immens viele Daten in diesen Netzwerken gelagert. Wir wollten eine "Vorschlage" - Service basierend auf den Daten seiner Freunde erstellen. Unser Service FriendScore analysiert die Checkins seiner Freunde und berechnet daraus einen sogennanten FriendScore. Dieser Score sagt aus, wie intensiv die Freunde mit einer Lokalität interagieren.
 </p>
 
 </div>
