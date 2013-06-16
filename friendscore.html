@@ -654,7 +654,7 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
     <tbody>
         <tr>
             <th>Name</th>
-            <td>Friendscore anzeigen</th>
+            <td>Friend Score anzeigen</th>
         </tr>
         <tr>
             <th>Priorität</th>
@@ -663,7 +663,7 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
         <tr>
             <th>Beschreibung</th>
             <td>
-                Der Benutzer soll anhand der Checkins seiner Freunde einen Score angezeigt bekommen, welcher basierend auf der Häufigkeit der Checkins der Freunde berechnet wird. Dieser Score, gennant Friendscore, befindet sich zwischen 0 und 100%.
+                Der Benutzer soll anhand der Checkins seiner Freunde einen Score angezeigt bekommen, welcher basierend auf der Häufigkeit der Checkins der Freunde berechnet wird. Dieser Score, gennant Friend Score, befindet sich zwischen 0 und 100%.
             </td>
         </tr>
         <tr>
@@ -961,7 +961,7 @@ spezielle HTTP-Header Atrribute. Für Twitter sei der OAuth2 Standart noch zu we
 ausgreift und warten ab bis eine endgültige Spezifikation des Standarts herausgegeben wird.
 </p>
 <p>
-Interessant für das Projekt Friendscore sind die Daten der Follower eines Users. Über die Ressource <code>/1.1/friends/ids.json</code> erhält man die eindeutigen Id's der Follower des Benutzers. Anhand dieser Id ist es dann möglich auf die Timeline eines Users zuzugreifen. Die Timline des Users enthält alle seine Tweets und den dazugehörenden Metadaten wie z.B. die Geolocation des Tweets. Die Timeline Ressource ist unter <code>/1.1/statuses/user_timeline.json</code> zu finden.
+Interessant für das Projekt Friend Score sind die Daten der Follower eines Users. Über die Ressource <code>/1.1/friends/ids.json</code> erhält man die eindeutigen Id's der Follower des Benutzers. Anhand dieser Id ist es dann möglich auf die Timeline eines Users zuzugreifen. Die Timline des Users enthält alle seine Tweets und den dazugehörenden Metadaten wie z.B. die Geolocation des Tweets. Die Timeline Ressource ist unter <code>/1.1/statuses/user_timeline.json</code> zu finden.
 </p>
 <pre class="code"><code>[…]
     'place': {
@@ -1094,10 +1094,10 @@ diese die Daten darstellen kann.
 
 <h3>Idee</h3>
 <p>
-    Die Idee hinter dem Friend Score ist der Vorschlag von Lokailtäten basierend auf den Checkins der Freunde des Users. Je mehr die Freunde mit einer Lokalität inteagiert haben desto höher steigt die Prozentzahl für den Friend Score.
+    Die Idee hinter dem Friend Score ist der Vorschlag von Lokalitäten basierend auf den Checkins der Freunde des Users. Je intensiver Freunde mit einer Lokalität inteagiert haben, desto höher steigt die Wert für den Friend Score.
 </p>
 <p>
-    Ein User erhält dadurch einen Einblick über Lokalitäten mit welchen Freunde von ihm stark inteagieren. Darauf basierend lassen sich Vorschläge über Lokalitäten anzeigen. Es ist davon auszugehen, dass Lokalitäten mit einem hohen Friend Score den Geschmack des Users gut treffen. Dies weil die Geschmäcker innerhalb eines Freundenkreises meistens relativ ähnlich sind.
+    Ein User erhält einen Einblick über Lokalitäten mit welchen seine Freunde intensiv inteagiert haben. Darauf basierend lassen sich Vorschläge über Lokalitäten anzeigen. Es ist davon auszugehen, dass Lokalitäten mit einem hohen Friend Score den Geschmack des Users gut treffen. Dies basierend auf der Annahme, dass die Geschmäcker innerhalb eines Freundenkreises meistens relativ ähnlich sind.
 </p>
 
 <h3>Berechnung</h3>
@@ -1114,7 +1114,7 @@ diese die Daten darstellen kann.
 </pre>
 
 <p>
-    Für den Moment werden zwei, Facebook und Foursquare, soziale Netzwerke unterstützt. Es werden mindestens 3 Checkins pro Lokalität benötigt um die maximale Anzahl Punkte zu erhalten. Daraus folgt folgender Wert für den Basispunkt:
+    Momentan werden zwei, Facebook und Foursquare, soziale Netzwerke unterstützt. Es werden mindestens 3 Checkins pro Lokalität benötigt um die maximale Anzahl Punkte zu erhalten. Daraus resultiert folgender Wert für den Basispunkt:
 </p>
 
 <pre class="code"><code>
@@ -1123,7 +1123,7 @@ diese die Daten darstellen kann.
 </pre>
 
 <p>
-    Wie zu erkennen ist werden die Checkins doppelt bewertet. Der Grund dafür ist, dass davon ausgegangen wird das der mehrfache Besuch einer Lokalität des gleichen Freundes eine höheren Stellenwert hat als nur einen Besuch. Eine Gewichtig der sozialen Netzwerke wird momentan nicht vorgenommen. Dies ist könnte aber in Zukunft in die Formel noch einfliessen.
+    Wie zu erkennen ist werden die Checkins doppelt bewertet. Es wird davon ausgegangen, dass der mehrfache Besuch einer Lokalität des gleichen Freundes eine höheren Stellenwert hat wie nur ein einzelner Besuch. Eine Gewichtung der sozialen Netzwerke wird momentan nicht vorgenommen. Dies könnte aber in der Zukunft in die Formel einfliessen.
 </p>
 
 <p>
@@ -1140,7 +1140,7 @@ diese die Daten darstellen kann.
 </p>
 
 <pre class="code"><code>
-    1 / (x Anzahl der verfügbaren Netzwerke) = 0.5
+    1 / 2 = 0.5
 </code>
 </pre>
 
@@ -1151,11 +1151,11 @@ diese die Daten darstellen kann.
 </p>
 
 <p>
-    Hans hat die Sonne insgesamt drei mal besucht. Zwei mal davon hat er sich via Facebook eingecheckt. Das dritte mal verwendete Hans Foursquare.
+    Hans hat die Sonne insgesamt drei Mal besucht. Zwei Mal hat er sich via Facebook eingecheckt. Das dritte Mal verwendete Hans Foursquare.
 </p>
 
 <p>
-    Susanne hat die Sonne vier mal besucht. Sie checkte sich jedes mal mit Foursquare ein.
+    Susanne hat die Sonne vier Mal besucht. Sie checkte sich jedes mal mit Foursquare ein.
 </p>
 
 <p>
@@ -1182,7 +1182,7 @@ diese die Daten darstellen kann.
 </pre>
 
 <p>
-    Es wird maximal mit 3 Checkins gerecht. Ebenfalls werden diese doppelt genommen. Die Punkte von Hans fliessen nicht mehr in die Berechnung ein, da die maximale Punktzahl bereits erreicht worden ist.
+    Es wird maximal mit 3 Checkins gerechnet. Ebenfalls werden diese doppelt genommen, da Susanne mehr als einmal in der Sonne war. Die Punkte von Hans fliessen nicht mehr in die Berechnung ein, da die maximale Punktzahl für ein einzelens Netzwerk bereits erreicht worden ist.
 </p>
 
 <p>Daraus resultiert folgender Friend Score</p>
@@ -1190,12 +1190,12 @@ diese die Daten darstellen kann.
 <pre class="code"><code>
     Facebook: 0.333...<br />
     Foursquare: 0.5<br />
-    <strong>Friend Score: 83%5</strong><br />
+    <strong>Friend Score: 83%</strong><br />
 </code>
 </pre>
 
 <p>
-    Wie zu erkennen ist, ist die Berechnung des Friend Score schon bei einem einfachen Beispiel relativ komplex. Daher wurde versucht von Anfang die variablen Bedingungen der Berechnung tief zu halten. Natürlich wird sich der Algorithmus in Zukunft weiterentwickeln und noch genauer werden.
+    Wie zu erkennen ist, ist die Berechnung des Friend Score schon bei einem einfachen Beispiel relativ komplex. Es wurde versucht von Anfang die variablen Bedingungen der Berechnung tief zu halten. Natürlich wird sich der Algorithmus in Zukunft weiterentwickeln und noch genauer werden.
 </p>
 
 </div>
