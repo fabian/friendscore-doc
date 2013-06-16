@@ -1572,8 +1572,23 @@ OK (5 tests, 18 assertions)
 
 <h3>Ausgangslage</h3>
 <p>
-    Heutzutage brauchen viele Menschen soziale Netzwerke wie Facebook und Twitter. Es werden immens viele Daten in diesen Netzwerken gelagert. Wir wollten eine "Vorschlage" - Service basierend auf den Daten seiner Freunde erstellen. Unser Service FriendScore analysiert die Checkins seiner Freunde und berechnet daraus einen sogennanten FriendScore. Dieser Score sagt aus, wie intensiv die Freunde mit einer Lokalität interagieren.
+    Heutzutage brauchen viele Menschen soziale Netzwerke wie Facebook und Twitter. Es werden immens viele Daten in diesen Netzwerken gelagert. Wir wollten eine "Vorschlage" - Service basierend auf den Daten der eigenen Freunde erstellen. Unser Service FriendScore analysiert die Checkins seiner Freunde und berechnet daraus einen sogennanten FriendScore. Dieser Score sagt aus, wie intensiv die Freunde mit einer Lokalität interagieren.
 </p>
+
+<h3>Vorgehensweise</h3>
+<p>
+    Die API's von Facebook, Foursquare, Twitter und Instagram wurden  analysiert. Im speziellen wurde untersucht ob die Netzwerke die Daten der Freunde, Follower etc. zur Verfügung stellen und wenn ja ob diese Daten die notwendigen Informationen für das Projekt FriendScore liefern.
+</p>
+<p>
+    Wie sich herausgestellt hat, haben alle vier API's unsere Anforderungen erfüllt. Wir haben uns dann entschieden mit den Daten von Facebook und Foursquare einen Prototypen zu schreiben.
+</p>
+
+<h3>Technologien</h3>
+<p>Der Prototyp ist eine PHP Applikation basieren auf dem Framework Symfony 2.2.</p>
+<p>Für die Userverwaltung wurde ein eigene MySQL Datenbank verwendet.</p>
+<p>Die Daten der sozialen Netzwerke werden in einer ElasticSearch Datenbank gespeichert. Dies vereinfachte uns das Suchen nach bestimmten Lokalitäten und die Datenbank unterstützt von Haus aus eine Geo Attribut.</p>
+<p>Die verschiedenen Checkins werden mit mittels des Webservices Mapbox auf einer Karte dargestellt.</p>
+<p>Die Berechnung des FriendScores basiert auf einem eigens entwickelten Algorithmus. Der Algorithmus legt sein Hauptaugenmerk auf mehrfache Checkins eines gleichen Freundes.</p>
 
 </div>
 
