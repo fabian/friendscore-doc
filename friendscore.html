@@ -531,7 +531,7 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
 </p>
 
 <figure id="figure-anwendungsfalldiagramm-friendscore" class="inline">
-    <img src="images/anwendungsfalldiagramm-friendscore.png"/>
+    <img src="images/anwendungsfalldiagramm-friendscore.png" height="480" />
     <figcaption>Anwendungsfalldiagramm FriendScore</figcaption>
 </figure>
 
@@ -547,11 +547,11 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
     <tbody>
         <tr>
             <th>Name</th>
-            <td>Check-Ins seiner Freunde sehen</th>
+            <td>Check-Ins seiner Freunde sehen</td>
         </tr>
         <tr>
             <th>Priorität</th>
-            <td>hoch</th>
+            <td>hoch</td>
         </tr>
         <tr>
             <th>Beschreibung</th>
@@ -560,7 +560,7 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
                 hierarchischer Reihenfolge sehen können. Es werden nur die 
                 letzten 5 Check-Ins angezeigt, ältere Check-Ins können nicht
                 angezeigt werden.
-            </th>
+            </td>
         </tr>
         <tr>
             <th>Vorbedingungen</th>
@@ -568,7 +568,7 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
                 Der Benutzer muss sich registiert und eingeloggt haben. Er muss 
                 zudem sein Konto mit mindestens einem Sozialen Netzwerk 
                 verbunden haben.
-            </th>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -583,11 +583,11 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
     <tbody>
         <tr>
             <th>Name</th>
-            <td>Lokalität ansehen</th>
+            <td>Lokalität ansehen</td>
         </tr>
         <tr>
             <th>Priorität</th>
-            <td>tief</th>
+            <td>tief</td>
         </tr>
         <tr>
             <th>Beschreibung</th>
@@ -596,14 +596,14 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
                 Position einer Lokalität anzeigen. Die Position soll auf einer 
                 Karte dargestellt werden. Zudem sollen die Namen von Freunden 
                 aufgelistet werden, welche in der Lokalität eingecheckt haben.
-            </th>
+            </td>
         </tr>
         <tr>
             <th>Vorbedingungen</th>
             <td>
                 Der Benutzer gelangt entweder über den Check-Ins eines Freundes
                 auf eine Lokalität oder hat diese über die Suche gefunden.
-            </th>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -618,11 +618,11 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
     <tbody>
         <tr>
             <th>Name</th>
-            <td>Lokalitäten suchen</th>
+            <td>Lokalitäten suchen</td>
         </tr>
         <tr>
             <th>Priorität</th>
-            <td>tief</th>
+            <td>tief</td>
         </tr>
         <tr>
             <th>Beschreibung</th>
@@ -631,7 +631,7 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
                 suchen können. Es soll eine Volltextsuch im Namen aller 
                 Lokalitäten durchgeführt werden. In einer Liste sowie auf einer 
                 Karte sollen maximal 5 Resultate angezeigt werden.
-            </th>
+            </td>
         </tr>
         <tr>
             <th>Vorbedingungen</th>
@@ -639,7 +639,7 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
                 Der Benutzer muss sich registiert und eingeloggt haben. Er muss 
                 zudem sein Konto mit mindestens einem Sozialen Netzwerk 
                 verbunden haben.
-            </th>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -654,11 +654,11 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
     <tbody>
         <tr>
             <th>Name</th>
-            <td>FriendScore anzeigen</th>
+            <td>FriendScore anzeigen</td>
         </tr>
         <tr>
             <th>Priorität</th>
-            <td>hoch</th>
+            <td>hoch</td>
         </tr>
         <tr>
             <th>Beschreibung</th>
@@ -673,7 +673,7 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
                 zudem sein Konto mit mindestens einem Sozialen Netzwerk 
                 verbunden haben.
                 Ein Freund muss mindestens an einer Lokalität eingecheckt haben.
-            </th>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -687,7 +687,11 @@ Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt
 
 <h3>Projektteam</h3>
 <p>
-Das Projektteam setzt sich aus Fabian Vogler und Cyril Gabathuler zusammen.
+Das Projektteam setzt sich aus Fabian Vogler und Cyril Gabathuler zusammen. 
+Fabian Vogler analysiert die APIs von Instagram und Foursquare, während Cyril 
+Gabathuler die APIs von Twitter und Facebook untersucht. Bei der Umsetzung 
+wird die Integration der APIs mit der Karte von Fabian Vogler durchgeführt und 
+Cyril Gabathuler befasst sich mit der Implementierung des FriendScores.
 </p>
 
 <h3>Projektplanung</h3>
@@ -1004,17 +1008,6 @@ Services, wie die Anbindung der sozialen Netzwerke über ihre Webschnittstellen.
     <figcaption>Soll / Ist Vergleich Aufwand</figcaption>
 </figure>
 
-<h3>Dokumentation</h3>
-
-<p>
-Die Dokumentation wurde rein in HTML und CSS geschrieben. Das Inhalts- und das
-Abbildungsverzeichnis wurden dynamisch mit JavaScript generiert. Um die Seite
-auch korrekt ausdrucken zu können, wurde die Software
-<a href="http://www.princexml.com/">Prince</a> verwendet, welche HTML-Seiten
-in PDFs umwandelt. Dadurch konnte diese Dokumentation gleich wie der Source-Code
-der Applikation selbst mit der Versionverwaltungssoftware Git verwaltet.
-</p>
-
 </div>
 
 <div class="chapter">
@@ -1055,8 +1048,12 @@ Mit der <code>id</code> werden alle weiteren Aufrufe gegen die API gestartet.
 </p>
 <p>
 Um an Informationen der Freunde eines Benutzer zu gelangen muss folgende Ressource
-aufgerufen werden: <code>/{id}?id,name,friends.fields(first_name,last_name,checkins.fields(coordinates,place))</code>
-<br />Mit dem <code>fields</code> Feld lassen sich spezifische Informationen definieren.
+aufgerufen werden:
+<pre class="code">
+<code>/{id}?id,name,friends.fields(first_name,last_name,checkins)</code>
+</pre>
+<p>
+Mit dem <code>fields</code> Feld lassen sich spezifische Informationen definieren.
 </p>
 <pre class="code"><code>[…]
     "friends": {
@@ -1412,16 +1409,6 @@ dem Model auf. Er gibt dann die Daten aus dem Model an die View weiter, damit
 diese die Daten darstellen kann.
 </p>
 
-<h3>Indexierung</h3>
-
-<p>Parent/Child</p>
-<p>Kein Join</p>
-
-<p>Nested</p>
-<p>Schlechte Performance da immer ganzes Doc indexiert wird</p>
-
-<p>http://euphonious-intuition.com/2013/02/managing-relations-in-elasticsearch/</p>
-
 <h3>Testing</h3>
 
 <p>
@@ -1436,7 +1423,8 @@ Unterordner <code>Tests</code> (z.B.
 <p>
 Ausgeführt werden können die Tests mit <code>bin/phpunit -c app/</code> auf der 
 Kommandozeile. Die Code Coverage findet sich danach auch als HTML-Datei im 
-Ordner <code>app/coverage</code>.
+Ordner <code>app/coverage</code>. Nachfolgend der Aufruf der Tests inklusive 
+der Ausgabe auf der Kommandzeile:
 </p>
 
 <pre class="code">
@@ -1444,13 +1432,13 @@ Ordner <code>app/coverage</code>.
 $ bin/phpunit -c app/
 PHPUnit 3.7.21 by Sebastian Bergmann.
 
-Configuration read from /Users/fabian/Workspaces/PHP/friendscore/app/phpunit.xml.dist
+Configuration read from app/phpunit.xml.dist
 
-.....
+..........
 
-Time: 0 seconds, Memory: 7.25Mb
+Time: 0 seconds, Memory: 8.25Mb
 
-OK (5 tests, 18 assertions)
+OK (10 tests, 37 assertions)
 </code>
 </pre>
 
@@ -1589,6 +1577,11 @@ OK (5 tests, 18 assertions)
 <p>Die Daten der sozialen Netzwerke werden in einer ElasticSearch Datenbank gespeichert. Dies vereinfachte uns das Suchen nach bestimmten Lokalitäten und die Datenbank unterstützt von Haus aus eine Geo Attribut.</p>
 <p>Die verschiedenen Checkins werden mit mittels des Webservices Mapbox auf einer Karte dargestellt.</p>
 <p>Die Berechnung des FriendScores basiert auf einem eigens entwickelten Algorithmus. Der Algorithmus legt sein Hauptaugenmerk auf mehrfache Checkins eines gleichen Freundes.</p>
+
+<figure id="figure-system-uebersicht">
+    <img src="images/screenshot-web.png"/>
+    <figcaption>Screenshot Web-Applikation FriendScore</figcaption>
+</figure>
 
 </div>
 
