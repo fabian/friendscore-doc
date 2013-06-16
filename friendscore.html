@@ -1422,6 +1422,38 @@ diese die Daten darstellen kann.
 
 <p>http://euphonious-intuition.com/2013/02/managing-relations-in-elasticsearch/</p>
 
+<h3>Testing</h3>
+
+<p>
+Getestet wird die Applikation mit der Software 
+<a href="https://github.com/sebastianbergmann/phpunit/">PHPUnit</a>, welche es 
+erlaubt Unit Tests in PHP zu schreiben und auszuführen. Die Tests sind einfache 
+PHP-Klassen und befinden sich jeweils in den einzelnen Bundles im 
+Unterordner <code>Tests</code> (z.B. 
+<code>src/FriendScore/FoursquareBundle/Tests</code>).
+</p>
+
+<p>
+Ausgeführt werden können die Tests mit <code>bin/phpunit -c app/</code> auf der 
+Kommandozeile. Die Code Coverage findet sich danach auch als HTML-Datei im 
+Ordner <code>app/coverage</code>.
+</p>
+
+<pre class="code">
+<code>
+$ bin/phpunit -c app/
+PHPUnit 3.7.21 by Sebastian Bergmann.
+
+Configuration read from /Users/fabian/Workspaces/PHP/friendscore/app/phpunit.xml.dist
+
+.....
+
+Time: 0 seconds, Memory: 7.25Mb
+
+OK (5 tests, 18 assertions)
+</code>
+</pre>
+
 </div>
 
 <div class="chapter">
