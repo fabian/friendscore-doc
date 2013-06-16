@@ -1048,8 +1048,12 @@ Mit der <code>id</code> werden alle weiteren Aufrufe gegen die API gestartet.
 </p>
 <p>
 Um an Informationen der Freunde eines Benutzer zu gelangen muss folgende Ressource
-aufgerufen werden: <code>/{id}?id,name,friends.fields(first_name,last_name,checkins.fields(coordinates,place))</code>
-<br />Mit dem <code>fields</code> Feld lassen sich spezifische Informationen definieren.
+aufgerufen werden:
+<pre class="code">
+<code>/{id}?id,name,friends.fields(first_name,last_name,checkins)</code>
+</pre>
+<p>
+Mit dem <code>fields</code> Feld lassen sich spezifische Informationen definieren.
 </p>
 <pre class="code"><code>[…]
     "friends": {
@@ -1419,7 +1423,8 @@ Unterordner <code>Tests</code> (z.B.
 <p>
 Ausgeführt werden können die Tests mit <code>bin/phpunit -c app/</code> auf der 
 Kommandozeile. Die Code Coverage findet sich danach auch als HTML-Datei im 
-Ordner <code>app/coverage</code>.
+Ordner <code>app/coverage</code>. Nachfolgend der Aufruf der Tests inklusive 
+der Ausgabe auf der Kommandzeile:
 </p>
 
 <pre class="code">
@@ -1429,11 +1434,11 @@ PHPUnit 3.7.21 by Sebastian Bergmann.
 
 Configuration read from app/phpunit.xml.dist
 
-.....
+..........
 
-Time: 0 seconds, Memory: 7.25Mb
+Time: 0 seconds, Memory: 8.25Mb
 
-OK (5 tests, 18 assertions)
+OK (10 tests, 37 assertions)
 </code>
 </pre>
 
