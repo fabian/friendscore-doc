@@ -525,18 +525,51 @@ für die Benutzer zu vereinfachen. Fazit erstellen inkl Review und Ausblick.
 <p>
 Es soll eine Web-Applikation umgesetzt werden, um die Check-Ins von Freunden in 
 unterschiedlichen Sozialen Netzwerken anzuzeigen. Der Benutzer soll sich in der 
-Web-Applikation registrieren und dann einloggen können. Hat er sein Konto mit 
-mindestens einem Sozialen Netzwerk verbunden, werden jeweils um 07:00 Uhr die 
-Check-Ins von Freunden innerhalb der letzten 24 Stunden importiert und angezeigt.
+Web-Applikation registrieren und dann einloggen können.
 </p>
+
+<p>
+Hat er sein Konto mit 
+mindestens einem Sozialen Netzwerk verbunden, werden jeweils um 07:00 Uhr die 
+Check-Ins von Freunden innerhalb der letzten 24 Stunden aus allen verbundenen 
+Netzwerken importiert.
+</p>
+
+<p>
+Beim nächsten Login des Benutzer werden dann alle Lokalitäten mit Check-Ins von
+Freunden sowie die Beurteilung des Systems angezeigt.
+</p>
+
+<!-- TODO extend -->
+
+<h3>Kontextabgrenzung</h3>
+
+<figure id="figure-kontextdiagramm" class="inline">
+    <img src="images/kontextdiagramm.png"/>
+    <figcaption>Kontextdiagramm</figcaption>
+</figure>
+
+<p>
+Der Benutzer greift auf eine Web-Applikation zu, welche die APIs von Sozialen
+Netzwerken verwendet, um derren Daten in eine Datenbank zu importieren. Der 
+Benutzer ist dabei die einzige Person, die mit dem System aggiert - die Freunde 
+des Benutzers müssen keine direkten Aktionen am System vornehmen und die Abfrage 
+der Daten über die APIs geschieht automatisiert.
+</p>
+
+<p>
+Für die Speicherung der Daten sind zwei unterschiedliche Speicher notwendig: 
+Die Benutzerdaten werden in einer einfachen Datenbank gespeichert (RDBMS), 
+während die Check-Ins der Benutzer in einer Suchmaschine (Search Engine) 
+gespeichert werden, welche Volltext und Geografische Suchabfragen erlaubt.
+</p>
+
+<h3>Anwendungsfälle</h3>
 
 <figure id="figure-anwendungsfalldiagramm-friendscore" class="inline">
     <img src="images/anwendungsfalldiagramm-friendscore.png" height="480" />
     <figcaption>Anwendungsfalldiagramm FriendScore</figcaption>
 </figure>
-
-
-<h3>Anwendungsfälle</h3>
 
 <figure class="inline">
 <table width="100%">
@@ -1640,6 +1673,10 @@ im Internet Verwendung findet, jedoch mächtiger ist als JSON.
 <p>
 Desktop: Computer, welche von einem Benutzer bedient meist an einem Schreibtisch
 bedient wird.
+</p>
+<p>
+RDBMS: Relationales Datenbankmanagementsystem, Software, die zur Speicherung 
+von Informationen genutzt wird.
 </p>
 <p>
 Browser: Software zur Darstellung von Websiten aus dem Internet. Beispielsweise
