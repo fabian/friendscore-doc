@@ -1382,8 +1382,6 @@ Die Twitter API bietet enorm viele Daten, was die API schwer verständlich macht
 <div class="chapter">
 <h2>Architektur</h2>
 
-<h3>Systemarchitektur</h3>
-
 <figure id="figure-systemarchitektur" class="inline">
     <img src="images/systemarchitektur.png"/>
     <figcaption>Systemarchitektur</figcaption>
@@ -1395,6 +1393,13 @@ zentralen Server. Bei der Registrierung werden die Benutzerdaten in einer
 MySQL-Datenbank gespeichert. Über einen Cron-Job werden die Check-In-Daten 
 des Benutzers regelmässig über APIs von Foursquare und Facebook gelesen und 
 in ElasticSearch gespeichert.
+</p>
+
+<p>
+Bei Foursquare wird die API zur Abfrage der letzten Check-Ins (Recent Check-Ins) 
+sowie die API zur Entdeckung neuer Lokalitäten (Explore Venues) verwendet. Bei 
+der Kommunikation zu Facebook wird die Graph API für Benutzer (User) verwendet,
+um alle Check-Ins der Freunde abzurufen.
 </p>
 
 <h3>Applikation</h3>
