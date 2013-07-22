@@ -523,7 +523,7 @@ für die Benutzer zu vereinfachen. Fazit erstellen inkl Review und Ausblick.
 <h3>Übersicht</h3>
 
 <p>
-Es soll eine Web-Applikation umgesetzt werden, um die Check-Ins von Freunden in 
+Es soll eine Web-Applikation umgesetzt werden, um die Check-ins von Freunden in 
 unterschiedlichen Sozialen Netzwerken anzuzeigen. Der Benutzer soll sich in der 
 Web-Applikation registrieren und dann einloggen können.
 </p>
@@ -531,12 +531,12 @@ Web-Applikation registrieren und dann einloggen können.
 <p>
 Hat er sein Konto mit 
 mindestens einem Sozialen Netzwerk verbunden, werden jeweils um 07:00 Uhr die 
-Check-Ins von Freunden innerhalb der letzten 24 Stunden aus allen verbundenen 
+Check-ins von Freunden innerhalb der letzten 24 Stunden aus allen verbundenen 
 Netzwerken importiert.
 </p>
 
 <p>
-Beim nächsten Login des Benutzer werden dann alle Lokalitäten mit Check-Ins von
+Beim nächsten Login des Benutzer werden dann alle Lokalitäten mit Check-ins von
 Freunden sowie die Beurteilung des Systems angezeigt.
 </p>
 
@@ -560,7 +560,7 @@ der Daten über die APIs geschieht automatisiert.
 <p>
 Für die Speicherung der Daten sind zwei unterschiedliche Speicher notwendig: 
 Die Benutzerdaten werden in einer einfachen Datenbank gespeichert (RDBMS), 
-während die Check-Ins der Benutzer in einer Suchmaschine (Search Engine) 
+während die Check-ins der Benutzer in einer Suchmaschine (Search Engine) 
 gespeichert werden, welche Volltext und Geografische Suchabfragen erlaubt.
 </p>
 
@@ -580,7 +580,7 @@ gespeichert werden, welche Volltext und Geografische Suchabfragen erlaubt.
     <tbody>
         <tr>
             <th>Name</th>
-            <td>Check-Ins seiner Freunde sehen</td>
+            <td>Check-ins seiner Freunde sehen</td>
         </tr>
         <tr>
             <th>Priorität</th>
@@ -589,9 +589,9 @@ gespeichert werden, welche Volltext und Geografische Suchabfragen erlaubt.
         <tr>
             <th>Beschreibung</th>
             <td>
-                Der Benutzer soll die Check-Ins seiner Freunde in 
+                Der Benutzer soll die Check-ins seiner Freunde in 
                 hierarchischer Reihenfolge sehen können. Es werden nur die 
-                letzten 5 Check-Ins angezeigt, ältere Check-Ins können nicht
+                letzten 5 Check-ins angezeigt, ältere Check-ins können nicht
                 angezeigt werden.
             </td>
         </tr>
@@ -634,7 +634,7 @@ gespeichert werden, welche Volltext und Geografische Suchabfragen erlaubt.
         <tr>
             <th>Vorbedingungen</th>
             <td>
-                Der Benutzer gelangt entweder über den Check-Ins eines Freundes
+                Der Benutzer gelangt entweder über den Check-ins eines Freundes
                 auf eine Lokalität oder hat diese über die Suche gefunden.
             </td>
         </tr>
@@ -696,7 +696,7 @@ gespeichert werden, welche Volltext und Geografische Suchabfragen erlaubt.
         <tr>
             <th>Beschreibung</th>
             <td>
-                Der Benutzer soll anhand der Checkins seiner Freunde einen Score angezeigt bekommen, welcher basierend auf der Häufigkeit der Checkins der Freunde berechnet wird. Dieser Score, gennant FriendScore, befindet sich zwischen 0 und 100%.
+                Der Benutzer soll anhand der Check-ins seiner Freunde einen Score angezeigt bekommen, welcher basierend auf der Häufigkeit der Check-ins der Freunde berechnet wird. Dieser Score, gennant FriendScore, befindet sich zwischen 0 und 100%.
             </td>
         </tr>
         <tr>
@@ -1390,16 +1390,16 @@ Die Twitter API bietet enorm viele Daten, was die API schwer verständlich macht
 <p>
 Die Web-Applikation FriendScore wurde mit PHP geschrieben und läuft auf einem 
 zentralen Server. Bei der Registrierung werden die Benutzerdaten in einer 
-MySQL-Datenbank gespeichert. Über einen Cron-Job werden die Check-In-Daten 
+MySQL-Datenbank gespeichert. Über einen Cron-Job werden die Check-in-Daten 
 des Benutzers regelmässig über APIs von Foursquare und Facebook gelesen und 
 in ElasticSearch gespeichert.
 </p>
 
 <p>
-Bei Foursquare wird die API zur Abfrage der letzten Check-Ins (Recent Check-Ins) 
+Bei Foursquare wird die API zur Abfrage der letzten Check-ins (Recent Check-ins) 
 sowie die API zur Entdeckung neuer Lokalitäten (Explore Venues) verwendet. Bei 
 der Kommunikation zu Facebook wird die Graph API für Benutzer (User) verwendet,
-um alle Check-Ins der Freunde abzurufen.
+um alle Check-ins der Freunde abzurufen.
 </p>
 
 <p>
@@ -1456,9 +1456,9 @@ diese die Daten darstellen kann.
 <h3>Ablauf</h3>
 
 <p>
-Da die Foursquare API nur die 100 letzten Checkins zurück liefert, ist ein Trick
+Da die Foursquare API nur die 100 letzten Check-ins zurück liefert, ist ein Trick
 nötig, um die Limitierung zu umgehen. FriendScore verwendet die bereits 
-bekannten Lokalitäten von alten Checkins und sucht mit deren Koordinaten in 
+bekannten Lokalitäten von alten Check-ins und sucht mit deren Koordinaten in 
 der Umgebung nach weiteren von Freunden besuchten Lokalitäten.
 </p>
 
@@ -1470,15 +1470,15 @@ der Umgebung nach weiteren von Freunden besuchten Lokalitäten.
 <p>
 Das nachfolgende Sequenzdiagramm zeigt den detailierten Ablauf der API-Aufrufe 
 von Foursquare. Ausgelöst durch einen Cronjob wird zuerst die API 
-<code>/checkins/recent</code> aufgerufen, um letzten Checkins abzurufen. In 
+<code>/checkins/recent</code> aufgerufen, um letzten Check-ins abzurufen. In 
 ElasticSearch werden dann die Lokalitäten gespeichert. Eine Stunde später werden 
 alle vorhandenen Lokalitäten aus ElasticSearch geladen und deren Koordinaten 
 für den Aufruf von <code>/explore</code> verwendet.
 </p>
 
 <p>
-Da bei Facebook sämtliche Checkins direkt abgerufen werden können, ist kein 
-solcher Trick notwendig - die Lokalitäten aus den Checkins können also direkt 
+Da bei Facebook sämtliche Check-ins direkt abgerufen werden können, ist kein 
+solcher Trick notwendig - die Lokalitäten aus den Check-ins können also direkt 
 in ElasticSearch gespeichert werden.
 </p>
 
@@ -1527,7 +1527,7 @@ OK (10 tests, 37 assertions)
 
 <h3>Idee</h3>
 <p>
-    Die Idee hinter dem FriendScore ist der Vorschlag von Lokalitäten basierend auf den Checkins der Freunde des Users. Je intensiver Freunde mit einer Lokalität inteagiert haben, desto höher steigt die Wert für den FriendScore.
+    Die Idee hinter dem FriendScore ist der Vorschlag von Lokalitäten basierend auf den Check-ins der Freunde des Users. Je intensiver Freunde mit einer Lokalität inteagiert haben, desto höher steigt die Wert für den FriendScore.
 </p>
 <p>
     Ein User erhält einen Einblick über Lokalitäten mit welchen seine Freunde intensiv inteagiert haben. Darauf basierend lassen sich Vorschläge über Lokalitäten anzeigen. Es ist davon auszugehen, dass Lokalitäten mit einem hohen FriendScore den Geschmack des Users gut treffen. Dies basierend auf der Annahme, dass die Geschmäcker innerhalb eines Freundenkreises meistens relativ ähnlich sind.
@@ -1535,19 +1535,19 @@ OK (10 tests, 37 assertions)
 
 <h3>Berechnung</h3>
 <p>
-    Basierend auf den Checkins von Freunden werde Punkte verteilt. Nach dem alle Checkins der Freunde für eine Lokalität analysiert worden sind werden die einzelnen Punkte aufsummiert. Die daraus resultierende Summe wird als FriendScore bezeichnet.
+    Basierend auf den Check-ins von Freunden werde Punkte verteilt. Nach dem alle Check-ins der Freunde für eine Lokalität analysiert worden sind werden die einzelnen Punkte aufsummiert. Die daraus resultierende Summe wird als FriendScore bezeichnet.
 </p>
 <p>
-    Die Berechnung des Basispunkts für einen Checkin basiert auf folgender Formel:
+    Die Berechnung des Basispunkts für einen Check-in basiert auf folgender Formel:
 </p>
 
 <pre class="code"><code>
-    Basispunkt = 1 / ((3 notwendige Checkins) * 2) / (Anzahl verfügbare Netzwerke)
+    Basispunkt = 1 / ((3 notwendige Check-ins) * 2) / (Anzahl verfügbare Netzwerke)
 </code>
 </pre>
 
 <p>
-    Momentan werden zwei, Facebook und Foursquare, soziale Netzwerke unterstützt. Es werden mindestens 3 Checkins pro Lokalität benötigt um die maximale Anzahl Punkte zu erhalten. Daraus resultiert folgender Wert für den Basispunkt:
+    Momentan werden zwei, Facebook und Foursquare, soziale Netzwerke unterstützt. Es werden mindestens 3 Check-ins pro Lokalität benötigt um die maximale Anzahl Punkte zu erhalten. Daraus resultiert folgender Wert für den Basispunkt:
 </p>
 
 <pre class="code"><code>
@@ -1556,11 +1556,11 @@ OK (10 tests, 37 assertions)
 </pre>
 
 <p>
-    Wie zu erkennen ist werden die Checkins doppelt bewertet. Es wird davon ausgegangen, dass der mehrfache Besuch einer Lokalität des gleichen Freundes eine höheren Stellenwert hat wie nur ein einzelner Besuch. Eine Gewichtung der sozialen Netzwerke wird momentan nicht vorgenommen. Dies könnte aber in der Zukunft in die Formel einfliessen.
+    Wie zu erkennen ist werden die Check-ins doppelt bewertet. Es wird davon ausgegangen, dass der mehrfache Besuch einer Lokalität des gleichen Freundes eine höheren Stellenwert hat wie nur ein einzelner Besuch. Eine Gewichtung der sozialen Netzwerke wird momentan nicht vorgenommen. Dies könnte aber in der Zukunft in die Formel einfliessen.
 </p>
 
 <p>
-    Pro Checkin wird nun der Basispunkt verteilt. Sollte ein Freund mehr als einmal eingecheckt habe werden seine Punkte doppelt gezählt. Die maximale Punktzahl kann nur erreicht werden wenn ein Freund drei mal am gleichen Ort eingecheckt hat. Die maximale Punktzahl pro sozialen Netzwerk beschränkt auf folgende Formel, da die Punkte linear über die Netzwerke verteilt werden.
+    Pro Check-in wird nun der Basispunkt verteilt. Sollte ein Freund mehr als einmal eingecheckt habe werden seine Punkte doppelt gezählt. Die maximale Punktzahl kann nur erreicht werden wenn ein Freund drei mal am gleichen Ort eingecheckt hat. Die maximale Punktzahl pro sozialen Netzwerk beschränkt auf folgende Formel, da die Punkte linear über die Netzwerke verteilt werden.
 </p>
 
 <pre class="code"><code>
@@ -1580,7 +1580,7 @@ OK (10 tests, 37 assertions)
 <h3>Beispiel</h3>
 
 <p>
-    Als Beispiel wird das Restaurant Sonne verwendet. Es stehen Checkins von Hans und Susanne zur Verfügung.
+    Als Beispiel wird das Restaurant Sonne verwendet. Es stehen Check-ins von Hans und Susanne zur Verfügung.
 </p>
 
 <p>
@@ -1615,7 +1615,7 @@ OK (10 tests, 37 assertions)
 </pre>
 
 <p>
-    Es wird maximal mit 3 Checkins gerechnet. Ebenfalls werden diese doppelt genommen, da Susanne mehr als einmal in der Sonne war. Die Punkte von Hans fliessen nicht mehr in die Berechnung ein, da die maximale Punktzahl für ein einzelens Netzwerk bereits erreicht worden ist.
+    Es wird maximal mit 3 Check-ins gerechnet. Ebenfalls werden diese doppelt genommen, da Susanne mehr als einmal in der Sonne war. Die Punkte von Hans fliessen nicht mehr in die Berechnung ein, da die maximale Punktzahl für ein einzelens Netzwerk bereits erreicht worden ist.
 </p>
 
 <p>Daraus resultiert folgender FriendScore</p>
@@ -1638,7 +1638,7 @@ OK (10 tests, 37 assertions)
 
 <h3>Ausgangslage</h3>
 <p>
-    Heutzutage brauchen viele Menschen soziale Netzwerke wie Facebook und Twitter. Es werden immens viele Daten in diesen Netzwerken gelagert. Wir wollten eine "Vorschlage" - Service basierend auf den Daten der eigenen Freunde erstellen. Unser Service FriendScore analysiert die Checkins seiner Freunde und berechnet daraus einen sogennanten FriendScore. Dieser Score sagt aus, wie intensiv die Freunde mit einer Lokalität interagieren.
+    Heutzutage brauchen viele Menschen soziale Netzwerke wie Facebook und Twitter. Es werden immens viele Daten in diesen Netzwerken gelagert. Wir wollten eine "Vorschlage" - Service basierend auf den Daten der eigenen Freunde erstellen. Unser Service FriendScore analysiert die Check-ins seiner Freunde und berechnet daraus einen sogennanten FriendScore. Dieser Score sagt aus, wie intensiv die Freunde mit einer Lokalität interagieren.
 </p>
 
 <h3>Vorgehensweise</h3>
@@ -1652,11 +1652,11 @@ OK (10 tests, 37 assertions)
 <h3>Technologien</h3>
 <p>Der Prototyp ist eine PHP-Applikation basieren auf dem Framework Symfony&nbsp;2.2. Für die Userverwaltung wurde eine MySQL Datenbank verwendet.</p>
 <p>Die Daten der sozialen Netzwerke werden in einer ElasticSearch Datenbank gespeichert. Dies vereinfachte uns das Suchen nach bestimmten Lokalitäten und die Datenbank unterstützt von Haus aus eine Geo Attribut.</p>
-<p>Die verschiedenen Checkins werden mit dem Web-Service <a href="http://www.mapbox.com">MapBox</a> auf einer Karte dargestellt.</p>
-<p>Die Berechnung des FriendScores basiert auf einem eigens entwickelten Algorithmus. Der Algorithmus legt sein Hauptaugenmerk auf mehrfache Checkins eines gleichen Freundes.</p>
+<p>Die verschiedenen Check-ins werden mit dem Web-Service <a href="http://www.mapbox.com">MapBox</a> auf einer Karte dargestellt.</p>
+<p>Die Berechnung des FriendScores basiert auf einem eigens entwickelten Algorithmus. Der Algorithmus legt sein Hauptaugenmerk auf mehrfache Check-ins eines gleichen Freundes.</p>
 
 <h3>Prototyp</h3>
-<p>Dies ist die Startseite von FriendScore, nach dem sich der User mit einem Netzwerk verknüpft hat. Wie schon erwähnt werden die verschiedenen Checkins auf der Karte visualisiert.</p>
+<p>Dies ist die Startseite von FriendScore, nach dem sich der User mit einem Netzwerk verknüpft hat. Wie schon erwähnt werden die verschiedenen Check-ins auf der Karte visualisiert.</p>
 
 <figure id="figure-screenshot-web">
     <img src="images/screenshot-web.png"/>
@@ -1734,6 +1734,10 @@ wie z.B. eine Website zeigt.
 <p>
 Code Coverage: Beschreibt, wie viel Prozent des Source-Codes durch Unit Tests
 abgedeckt werden.
+</p>
+<p>
+Check-in: Teilt ein Benutzer seinen Freunden digital mit, dass er sich an einer 
+bestimmten Lokalität aufhält, wird dies als «Check-in» bezeichnet.
 </p>
 
 
