@@ -1453,6 +1453,40 @@ dem Model auf. Er gibt dann die Daten aus dem Model an die View weiter, damit
 diese die Daten darstellen kann.
 </p>
 
+<h3>Ablauf</h3>
+
+<p>
+Da die Foursquare API nur die 100 letzten Checkins zurück liefert, ist ein Trick
+nötig, um die Limitierung zu umgehen. FriendScore verwendet die bereits 
+bekannten Lokalitäten von alten Checkins und sucht mit deren Koordinaten in 
+der Umgebung nach weiteren von Freunden besuchten Lokalitäten.
+</p>
+
+<figure id="figure-foursquare-explore" class="inline">
+    <img src="images/foursquare-explore.png"/>
+    <figcaption>Illustration Foursquare Explore</figcaption>
+</figure>
+
+<p>
+Das nachfolgende Sequenzdiagramm zeigt den detailierten Ablauf der API-Aufrufe 
+von Foursquare. Ausgelöst durch einen Cronjob wird zuerst die API 
+<code>/checkins/recent</code> aufgerufen, um letzten Checkins abzurufen. In 
+ElasticSearch werden dann die Lokalitäten gespeichert. Eine Stunde später werden 
+alle vorhandenen Lokalitäten aus ElasticSearch geladen und derren Koordinaten 
+für den Aufruf von <code>/explore</code> verwendet.
+</p>
+
+<p>
+Da bei Facebook sämtliche Checkins direkt abgerufen werden können, ist kein 
+solcher Trick notwendig - die Lokalitäten aus den Checkins können also direkt 
+in ElasticSearch gespeichert werden.
+</p>
+
+<figure id="figure-sequenzdiagramm-foursquare" class="inline">
+    <img src="images/sequenzdiagramm-foursquare.png"/>
+    <figcaption>Sequenzdiagramm API-Abruf Foursquare</figcaption>
+</figure>
+
 <h3>Testing</h3>
 
 <p>
