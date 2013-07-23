@@ -1500,6 +1500,110 @@ in ElasticSearch gespeichert werden.
     <figcaption>Sequenzdiagramm API-Abruf Foursquare</figcaption>
 </figure>
 
+<h3>Web-Oberfläche</h3>
+
+<p>
+Die Web-Oberfläche von FriendScore ist der für den Benutzer sichtbare Teil der 
+Applikation. Nachdem die HTTP-Anfrage vom Controller verarbeitet und der View 
+zu HTML gerendert wurde, erfolgt die Darstellung der Seite mittels CSS und 
+JavaScript.
+</p>
+
+<p>
+Um auch auf mobile Geräten zu funktionieren, passt sich die Seitendarstellung 
+automatisch an die jeweils vorhande Bildschirmbreite an. Dazu wird mittels 
+CSS-Media-Queries die verfügbare Bildschirmbreite ermittelt und die Darstellung 
+der Seitenelemente entsprechend angepasst.
+</p>
+
+<p>
+Um das Schreiben des CSS zu vereinfachen, wurde die CSS-Erweiterung 
+<a href="http://lesscss.org/">LESS</a> eingesetzt. LESS erlaubt es, in CSS 
+dynamischen Elementen wie Variablen und Funktionen zu verwenden. z.B. können 
+dadurch Schriften global definiert und an verschiedenen Stellen 
+wiederverwendet werden:
+</p>
+
+<pre class="code">
+<code>
+@font-family: Lato, Helvetica, Arial, sans-serif;
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: @font-family;
+    color: #2C3E50;
+    font-size: 16px;
+}
+
+input {
+    font-family: @font-family;
+    font-size: 16px;
+}
+
+[…]
+</code>
+</pre>
+
+<p>
+Die Karten von FriendScore werden mithilfe des Dienstes 
+<a href="http://www.mapbox.com">MapBox</a> dargestellt. Das Kartenmaterial wird 
+auf einem externen Server von MapBox gehosted und für maximal 3000 Aufrufe 
+monatlich kostenlos zur Verfügung gestellt. Hierfür muss eine 
+externe JavaScript-Bibliothek eingebunden werden und entsprechend mit JavaScript 
+initialisiert werden:
+</p>
+
+<pre class="code">
+<code>
+&lt;script src="http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+
+var map = L.mapbox.map('map', 'equivalence.map-ju0tzt0i');
+map.setView([47.37842966928331, 8.5350089935687], 14);
+
+&lt;/script&gt;
+</code>
+</pre>
+
+<p>
+Über weitere JavaScript-Befehle können dann auch die einzelnen Lokalitäten auf 
+der Karte dargestellt werden:
+</p>
+
+<pre class="code">
+<code>
+&lt;script&gt;
+
+{% for place in places %}
+
+geoJson.features.push({
+
+    // this feature is in the GeoJSON format: see geojson.org
+    // for the full specification
+    type: 'Feature',
+
+    geometry: {
+        type: 'Point',
+
+        // coordinates here are in longitude, latitude order because
+        // x, y is the standard for GeoJSON and many formats
+        coordinates: [{{ place.location.lon }}, {{ place.location.lat }}]
+    },
+
+    properties: {
+        title: '{{ place.name }}',
+        url: '{{ url('friendscore_web_default_place', {'id': place.id}) }}',
+        'marker-color': '#E67E22'
+    }
+});
+
+{% endfor %}
+
+&lt;/script&gt;
+</code>
+</pre>
+
 <h3>Testing</h3>
 
 <p>
@@ -1665,7 +1769,7 @@ OK (10 tests, 37 assertions)
 <h3>Technologien</h3>
 <p>Der Prototyp ist eine PHP-Applikation basieren auf dem Framework Symfony&nbsp;2.2. Für die Userverwaltung wurde eine MySQL Datenbank verwendet.</p>
 <p>Die Daten der sozialen Netzwerke werden in einer ElasticSearch Datenbank gespeichert. Dies vereinfachte uns das Suchen nach bestimmten Lokalitäten und die Datenbank unterstützt von Haus aus eine Geo Attribut.</p>
-<p>Die verschiedenen Check-ins werden mit dem Web-Service <a href="http://www.mapbox.com">MapBox</a> auf einer Karte dargestellt.</p>
+<p>Die verschiedenen Check-ins werden mit dem Web-Service MapBox auf einer Karte dargestellt.</p>
 <p>Die Berechnung des FriendScores basiert auf einem eigens entwickelten Algorithmus. Der Algorithmus legt sein Hauptaugenmerk auf mehrfache Check-ins eines gleichen Freundes.</p>
 
 <h3>Prototyp</h3>
