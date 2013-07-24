@@ -579,6 +579,10 @@ gespeichert werden, welche Volltext und Geografische Suchabfragen erlaubt.
     </colgroup>
     <tbody>
         <tr>
+            <th>#</th>
+            <td>R1</td>
+        </tr>
+        <tr>
             <th>Name</th>
             <td>Check-ins seiner Freunde sehen</td>
         </tr>
@@ -615,6 +619,10 @@ gespeichert werden, welche Volltext und Geografische Suchabfragen erlaubt.
     </colgroup>
     <tbody>
         <tr>
+            <th>#</th>
+            <td>R2</td>
+        </tr>
+        <tr>
             <th>Name</th>
             <td>Lokalität ansehen</td>
         </tr>
@@ -649,6 +657,10 @@ gespeichert werden, welche Volltext und Geografische Suchabfragen erlaubt.
         <col width="70%" />
     </colgroup>
     <tbody>
+        <tr>
+            <th>#</th>
+            <td>R3</td>
+        </tr>
         <tr>
             <th>Name</th>
             <td>Lokalitäten suchen</td>
@@ -685,6 +697,10 @@ gespeichert werden, welche Volltext und Geografische Suchabfragen erlaubt.
         <col width="70%" />
     </colgroup>
     <tbody>
+        <tr>
+            <th>#</th>
+            <td>R4</td>
+        </tr>
         <tr>
             <th>Name</th>
             <td>FriendScore anzeigen</td>
@@ -1489,15 +1505,20 @@ alle vorhandenen Lokalitäten aus ElasticSearch geladen und deren Koordinaten
 für den Aufruf von <code>/explore</code> verwendet.
 </p>
 
-<p>
-Da bei Facebook sämtliche Check-ins direkt abgerufen werden können, ist kein 
-solcher Trick notwendig - die Lokalitäten aus den Check-ins können also direkt 
-in ElasticSearch gespeichert werden.
-</p>
-
 <figure id="figure-sequenzdiagramm-foursquare" class="inline">
     <img src="images/sequenzdiagramm-foursquare.png"/>
     <figcaption>Sequenzdiagramm API-Abruf Foursquare</figcaption>
+</figure>
+
+<p>
+Da bei Facebook sämtliche Check-ins direkt abgerufen werden können, ist kein 
+solcher Trick notwendig - die Lokalitäten aus den Check-ins können also direkt 
+in ElasticSearch gespeichert werden. Bei Facebook werden die Check-ins via dem <code>friend.fields</code> Aufruf abgerufen.
+</p>
+
+<figure id="figure-sequenzdiagramm-facebook" class="inline">
+    <img src="images/sequenzdiagramm-facebook.png"/>
+    <figcaption>Sequenzdiagramm API-Abruf Facebook</figcaption>
 </figure>
 
 <h3>Web-Oberfläche</h3>
@@ -1637,9 +1658,185 @@ OK (10 tests, 37 assertions)
 </code>
 </pre>
 
+<h4>Akzeptanz Testing</h4>
+<p>Es wurden verschiedene Akzeptanztests durchgeführt um die getroffenen Anforderungen abzudecken.</p>
+<figure id="figure-test1" class="inline">
+<table width="100%">
+    <colgroup>
+        <col width="30%" />
+        <col width="70%" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th>#</th>
+            <td>AT1</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>Check-ins seiner Freunde sehen</td>
+        </tr>
+        <tr>
+            <th>Requirement</th>
+            <td>
+              R1
+            </td>
+        </tr>
+        <tr>
+            <th>Akzeptanzkriterien</th>
+            <td>
+                <ul>
+                    <li>Checkins von Freunden von Facebook müssen ersichtlich sein</li>
+                    <li>Checkins von Freunden von Foursquare müssen ersichtlich sein</li>
+                    <li>Es sollen nur die letzten 5 Checkins ersichtlich sein</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Testresultat</th>
+            <td>
+                Alle geforderten Akzeptanzkriterien konnten erfüllt werden.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<figcaption>AT1: Check-ins seiner Freunde sehen</figcaption>
+</figure>
+
+<figure id="figure-test2" class="inline">
+<table width="100%">
+    <colgroup>
+        <col width="30%" />
+        <col width="70%" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th>#</th>
+            <td>AT2</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>Lokalität ansehen</td>
+        </tr>
+        <tr>
+            <th>Requirement</th>
+            <td>
+              R2
+            </td>
+        </tr>
+        <tr>
+            <th>Akzeptanzkriterien</th>
+            <td>
+                <ul>
+                    <li>Eine Lokalität soll mittels einem Marker auf einer Karte erscheinen</li>
+                    <li>Wird ein Marker ausgewählt erhählt man eine Detailansicht</li>
+                    <li>Die Detailansicht beinhaltet mehr Information wie Name, Freunde, welche die Lokalität besucht haben und das Rating.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Testresultat</th>
+            <td>
+                Alle geforderten Akzeptanzkriterien konnten erfüllt werden.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<figcaption>AT2: Lokalität ansehen</figcaption>
+</figure>
+
+<figure id="figure-test2" class="inline">
+<table width="100%">
+    <colgroup>
+        <col width="30%" />
+        <col width="70%" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th>#</th>
+            <td>AT3</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>Lokalitäten suchen</td>
+        </tr>
+        <tr>
+            <th>Requirement</th>
+            <td>
+              R3
+            </td>
+        </tr>
+        <tr>
+            <th>Akzeptanzkriterien</th>
+            <td>
+                <ul>
+                    <li>Der User kann via einem Textfeld einen Suche starten</li>
+                    <li>Es wird eine Volltextsuche verwendet</li>
+                    <li>Die Resultate beschränken sich auf die ersten 5 Ergebnise</li>
+                    <li>Das Suchresultat soll ebenfalls auf der Karte dargestellt werden.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Testresultat</th>
+            <td>
+                Alle geforderten Akzeptanzkriterien konnten erfüllt werden.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<figcaption>AT3: Lokalitäten suchen</figcaption>
+</figure>
+
+<figure id="figure-test2" class="inline">
+<table width="100%">
+    <colgroup>
+        <col width="30%" />
+        <col width="70%" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th>#</th>
+            <td>AT4</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>FriendScore anzeigen</td>
+        </tr>
+        <tr>
+            <th>Requirement</th>
+            <td>
+              R4
+            </td>
+        </tr>
+        <tr>
+            <th>Akzeptanzkriterien</th>
+            <td>
+                <ul>
+                    <li>Dem User soll in der Detailansicht einen Friendscore angezeigt werden</li>
+                    <li>Der Friendscore soll sich zwischen 0% und 100% befinden</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Testresultat</th>
+            <td>
+                Der Friendscore wird sich nie auf 0% befinden, weil nur Lokalitäten angzeigt werden, welche von Freunden besucht worden sind. Es wurde entschieden eine Sternebewertung zu verwenden. Dies führte zu einer einfacherer Intepretation des Friendscores.
+            </td>
+        </tr>
+        <tr>
+            <th>Querbezug</th>
+            <td>
+                <a href="#friendscorechapter">FriendScore</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<figcaption>AT4: FriendScore anzeigen</figcaption>
+</figure>
+
 </div>
 
-<div class="chapter">
+<div class="chapter" id="friendscorechapter">
 <h2>FriendScore</h2>
 
 <h3>Idee</h3>
