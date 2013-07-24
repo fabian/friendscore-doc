@@ -1535,6 +1535,65 @@ in ElasticSearch gespeichert werden. Bei Facebook werden die Check-ins über das
     <figcaption>Sequenzdiagramm API-Abruf Facebook</figcaption>
 </figure>
 
+<h3>Datenstruktur</h3>
+
+<p>
+ElasticSearch speichert Daten als Dokumente ab, welche jeweils eine eindeutige 
+ID sowie einen Typ haben. Für FriendScore unterscheiden wir zwei Typen: 
+Lokalitäten (place) und Besuche von Freunden (visit).
+</p>
+
+<p>
+Lokalitäten werden für alle Benutzer nur einmal gespeichert. Die ID einer 
+Lokalität setzt sich aus dem Sozialen Netzwerk, aus welchem sie 
+kommt, sowie der ID daraus zusammen: <code>{TYPE}_{ID}</code>. Nachfolgend 
+wird beispielhaft dargestellt, wie die Lokalität «Starbucks» mit der ID und 
+ihren Attributen in ElasticSearch gespeichert ist.
+</p>
+
+<pre class="code">
+<code>
+{
+    id: foursquare_4b61bad2f964a5202a1f2ae3
+    venue_id: 4b61bad2f964a5202a1f2ae3
+    name: Starbucks
+    location: {
+        lat: 46.947249115762
+        lon: 7.4379001217468
+    }
+    url: https://foursquare.com/v/starbucks/4b61bad2f964a5202a1f2ae3
+    type: foursquare
+}
+</code>
+</pre>
+
+<p>
+Ein Besuch ist immer mit einer Lokalität verknüpft und gibt an, wie oft ein 
+Freund die Lokalität bereits besucht hat. Um eine schnelle Darstellung der 
+Suchresultate zu ermöglichen, wird auch der Name der Lokalität mit dem 
+Besuch gespeichert. Die ID setzt sich aus der ID des Benutzers, der ID der 
+Lokalität und der ID des Besuchers zusammen: <code>{USER_PLACE_VISITOR}</code>. 
+Nachfolgend ein Beispiel eines Besuchs von Fabian Vogler im oben gezeigten 
+Starbucks, wie er in ElasticSearch gespeichert ist.
+</p>
+
+<pre class="code">
+<code>
+{
+    id: 52185640_foursquare_4b61bad2f964a5202a1f2ae3_2091579
+    user_id: 1
+    visitor_id: 2091579
+    place_id: foursquare_4b61bad2f964a5202a1f2ae3
+    place_name: Starbucks
+    first_name: Fabian
+    last_name: Vogler
+    type: foursquare
+    checkin_count: 3
+    _parent: foursquare_4b61bad2f964a5202a1f2ae3
+}
+</code>
+</pre>
+
 <h3>Web-Oberfläche</h3>
 
 <p>
