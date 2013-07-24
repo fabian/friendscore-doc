@@ -546,7 +546,7 @@ Dem Benutzer soll es möglich sein über die Check-ins seiner Freunde zu suchen.
 
 <h3>Benutzeroberfläche</h3>
 <p>
-    Es soll ein UI erstellt werden, welches geprägt ist durch eine Kartenansicht. Diese sollte immer so gross wie möglich sein um möglichst viel Informationen darzustellen. Einen kleinen Bereich ist für die Suche reserviert. In diesem Bereich sollten alle weiteren Informationen dargestellt werden. Auch die Verknüpfung zu den verschiedenen sozialen Netzwerken kann in diesem Bereich von statten gehen.
+    Es soll ein UI erstellt werden, welches geprägt ist durch eine Kartenansicht. Diese sollte immer so gross wie möglich sein um möglichst viel Informationen darzustellen. Einen kleinen Bereich ist für die Suche reserviert. In diesem Bereich sollten alle weiteren Informationen dargestellt werden. Auch die Verknüpfung zu den verschiedenen sozialen Netzwerken kann in diesem Bereich untergebracht werden.
 </p>
 <p>Es wird all Ziel genommen, immer möglichst viel Informationen dem Benutzer zu präsentieren. Daher soll der Eingabebereich soll klein wie möglich gehalten werden.</p>
 <figure id="figure-mockup" class="inline">
@@ -1526,7 +1526,7 @@ für den Aufruf von <code>/explore</code> verwendet.
 <p>
 Da bei Facebook sämtliche Check-ins direkt abgerufen werden können, ist kein 
 solcher Trick notwendig - die Lokalitäten aus den Check-ins können also direkt 
-in ElasticSearch gespeichert werden. Bei Facebook werden die Check-ins via dem <code>friend.fields</code> Aufruf abgerufen.
+in ElasticSearch gespeichert werden. Bei Facebook werden die Check-ins über das Feld <code>friend.fields</code> abgerufen.
 </p>
 
 <figure id="figure-sequenzdiagramm-facebook" class="inline">
@@ -1685,7 +1685,6 @@ OK (10 tests, 37 assertions)
 
 <h4>Akzeptanz Testing</h4>
 <p>Es wurden verschiedene Akzeptanztests durchgeführt um die getroffenen Anforderungen abzudecken.</p>
-<figure id="figure-test1" class="inline">
 <table width="100%">
     <colgroup>
         <col width="30%" />
@@ -1724,10 +1723,7 @@ OK (10 tests, 37 assertions)
         </tr>
     </tbody>
 </table>
-<figcaption>AT1: Check-ins seiner Freunde sehen</figcaption>
-</figure>
 
-<figure id="figure-test2" class="inline">
 <table width="100%">
     <colgroup>
         <col width="30%" />
@@ -1766,10 +1762,7 @@ OK (10 tests, 37 assertions)
         </tr>
     </tbody>
 </table>
-<figcaption>AT2: Lokalität ansehen</figcaption>
-</figure>
 
-<figure id="figure-test2" class="inline">
 <table width="100%">
     <colgroup>
         <col width="30%" />
@@ -1809,10 +1802,7 @@ OK (10 tests, 37 assertions)
         </tr>
     </tbody>
 </table>
-<figcaption>AT3: Lokalitäten suchen</figcaption>
-</figure>
 
-<figure id="figure-test2" class="inline">
 <table width="100%">
     <colgroup>
         <col width="30%" />
@@ -1851,13 +1841,11 @@ OK (10 tests, 37 assertions)
         <tr>
             <th>Querbezug</th>
             <td>
-                <a href="#friendscorechapter">FriendScore</a>
+                Weiter Informationen zur Berechnung des Friendscores kann im Kapitel <a href="#friendscorechapter">FriendScore</a> gefunden werden.
             </td>
         </tr>
     </tbody>
 </table>
-<figcaption>AT4: FriendScore anzeigen</figcaption>
-</figure>
 
 </div>
 
