@@ -527,7 +527,7 @@ und pflegen muss, sondern diese anhand der Freunde aggregiert werden.
 Definition der Anforderungen der zu entwickelnden Web-Applikation. Analyse von 
 APIs von drei sozialen Schnittstellen. Umsetzung einer Web-Applikation mit 
 Einbezug der zwei geeignetsten APIs. Verwendung eines Suchindexes um die Suche 
-für die Benutzer zu vereinfachen. Fazit erstellen inkl Review und Ausblick.
+für die Benutzer zu vereinfachen. Fazit erstellen inkl. Review und Ausblick.
 </p>
 </div>
 
@@ -560,13 +560,13 @@ Dem Benutzer soll es möglich sein über die Check-ins seiner Freunde zu suchen.
 
 <h3>Benutzeroberfläche</h3>
 <p>
-    Es soll ein UI erstellt werden, welches geprägt ist durch eine Kartenansicht. Diese sollte immer so gross wie möglich sein um möglichst viel Informationen darzustellen. Einen kleinen Bereich ist für die Suche reserviert. In diesem Bereich sollten alle weiteren Informationen dargestellt werden. Auch die Verknüpfung zu den verschiedenen sozialen Netzwerken kann in diesem Bereich untergebracht werden.
+Es soll ein Benutzeroberfläche erstellt werden, welche durch eine Kartenansicht geprägt ist. Diese sollte immer so gross wie möglich sein um möglichst viel Informationen darzustellen. Ein kleiner Bereich ist für die Suche reserviert. In diesem Bereich sollen alle weiteren Informationen dargestellt werden. Auch die Verknüpfung zu den verschiedenen Sozialen Netzwerken kann in diesem Bereich untergebracht werden.
 </p>
 <figure id="figure-mockup" class="inline">
     <img src="images/friendscore_mockup.png"/>
     <figcaption>Mockup FriendScore</figcaption>
 </figure>
-<p>Es wird all Ziel genommen, immer möglichst viel Informationen dem Benutzer zu präsentieren. Daher soll der Eingabebereich soll klein wie möglich gehalten werden. Lokalitäten auf der Karte sollen mit den von anderen Karten bekannten Pins dargestellt werden.</p>
+<p>Es wird all Ziel genommen, immer möglichst viel Informationen dem Benutzer zu präsentieren. Daher soll der Eingabebereich soll klein wie möglich gehalten werden. Lokalitäten auf der Karte sollen mit den von anderen Karten bekannten Pins dargestellt werden (Pin im Mockup übertrieben gross).</p>
 
 
 <h3>Kontextabgrenzung</h3>
@@ -1330,25 +1330,19 @@ umliegenden Orten anhand der Aktivitäten seiner Freunde geben lassen.
 <h4>Inhalte</h4>
 <p>
 Über die Ressource <code>/checkins/recent</code> können zwar Besuche von 
-Freunden abgerufen werden, jedoch ist diese Abfrage auf 100 Resultat limitiert 
-- ältere Daten sind somit über diese Ressource nicht abrufbar. Leider gibt es 
+Freunden abgerufen werden, jedoch ist diese Abfrage auf 100 Resultate 
+limitiert&nbsp;-&nbsp;ältere Daten sind somit über diese Ressource nicht 
+abrufbar. Leider gibt es 
 über die Foursquare API keine Möglichkeit, die vollständige Historie von 
 Besuchen von befreundeten Personen abzurufen.
 </p>
-<p>
-Bei Aufrufen von spezifischen Lokalitäten werden jedoch die bereits dort 
-gewesenen Freunde zurück geliefert. Zudem können über die Ressource 
-<code>/venues/explore</code> Lokalitäten, welche bereits von Freunden besucht 
-wurden, abgefragt werden. Dazu ist jedoch die Übergabe von Koordinaten nötig 
-und die Antwort beschränkt sich auf die nähere Umgebung.
-</p>
+
 <pre class="code"><code>{
    […]
    "response":{
       "recent":[
          {
             "id":"516beed1e4b0f82ae40595ea",
-            "createdAt":1366027985,
             "type":"checkin",
             […]
             "venue":{
@@ -1363,15 +1357,18 @@ und die Antwort beschränkt sich auf die nähere Umgebung.
                   "country":"Switzerland",
                   "cc":"CH"
                },
-               […]
-            },
-            […]
-         },
-         […]
-      ]
-   }
+   […]
 }
 </code></pre>
+
+<p>
+Bei Aufrufen von spezifischen Lokalitäten werden jedoch die bereits dort 
+gewesenen Freunde zurück geliefert. Zudem können über die Ressource 
+<code>/venues/explore</code> Lokalitäten, welche bereits von Freunden besucht 
+wurden, abgefragt werden. Dazu ist jedoch die Übergabe von Koordinaten nötig 
+und die Antwort beschränkt sich auf die nähere Umgebung.
+</p>
+
 <h4>Fazit</h4>
 <p>
 Foursquare verfügt über eine grosse Anzahl an Informationen über Lokalitäten, 
@@ -1431,21 +1428,6 @@ Interessant für das Projekt FriendScore sind die Daten der Follower eines Users
                                     12.2267545,
                                     42.2968828
                                 },
-                                {
-                                    12.2267545,
-                                    42.5874835
-                                },
-                                {
-                                    11.9036425,
-                                    42.5874835
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
-    }
 […]
 </code>
 </pre>
